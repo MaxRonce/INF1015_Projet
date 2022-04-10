@@ -1,6 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <utility>
+#include <stdexcept>
+
+
 
 class JeuEchec {
 	int nbPiecePrise;
@@ -50,10 +53,10 @@ private:
 
 };
 
-class InstancesRoiException : public logic_error
+class InstancesRoiException : public std::logic_error
 {
 public:
-	using logic_error::logic_error;
+	using std::logic_error::logic_error;
 };
 
 class Reine : public Piece {
