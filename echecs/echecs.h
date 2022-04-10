@@ -35,18 +35,25 @@ private:
 
 class Roi : public Piece {
 public:
-	Roi(int a, int b) : x_(a), y_(b) { ++compteurInstance; };
+	Roi(int a, int b);
 	bool mouvementValide(std::pair<int, int>& mouvement, int pas) override;
 	void deplacer(const int x, const int y) override;
-	~Roi() { --compteurInstance; };
+	~Roi();
+
 private:
 
 	int x_ = 0;
 	int y_ = 0;
 	std::pair<int, int> mouvement_;
-	char piece = '$';
+	char piece = 'K';
 	static int inline compteurInstance;
 
+};
+
+class InstancesRoiException : public logic_error
+{
+public:
+	using logic_error::logic_error;
 };
 
 class Reine : public Piece {
@@ -59,7 +66,7 @@ private:
 	int x_ = 0;
 	int y_ = 0;
 	std::pair<int, int> mouvement_;
-	char piece = 'R';
+	char piece = 'Q';
 
 };
 
