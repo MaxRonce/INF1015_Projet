@@ -7,7 +7,7 @@ Roi::Roi()
 {
 	++compteurInstance;
 	if (compteurInstance > 2)
-		throw InstancesRoiException("Plus que 2 instances de Roi"); //Oublie pas de mettre le try catch dans le main
+		throw InstancesRoiException("Plus que 2 instances de Roi"); 
 };
 
 Roi::~Roi() { --compteurInstance; };
@@ -27,13 +27,24 @@ bool Roi::mouvementValide(int pas) {
 
 };
 
-void Roi::deplacer(pair<char, int> pair) {
-	auto coordonnees = map.find(pair.first);
+void Roi::deplacer(char x, int y) {
+	positionPrecedente = position;
+	auto coordonnees = map.find(x);
 	position.first = coordonnees->second;
-	position.second = pair.second;
+	position.second = y;
 
 };
 
+const std::pair<int, int> Roi::getPosition() const {
+	return position;
+};
+const std::pair<int, int> Roi::getPositionPrecedente() const {
+	return this->positionPrecedente;
+};
+
+const char Roi::getSymbole() const {
+	return symbole;
+};
 
 bool Reine::mouvementValide(int pas) {
 
@@ -41,12 +52,24 @@ bool Reine::mouvementValide(int pas) {
 
 };
 
-void Reine::deplacer(pair<char, int> pair) {
-	auto coordonnees = map.find(pair.first);
+void Reine::deplacer(char x, int y) {
+	positionPrecedente = position;
+	auto coordonnees = map.find(x);
 	position.first = coordonnees->second;
-	position.second = pair.second;
+	position.second = y;
 };
 
+const std::pair<int, int> Reine::getPosition() const {
+	return position;
+};
+
+const std::pair<int, int> Reine::getPositionPrecedente() const {
+	return this->positionPrecedente;
+};
+
+const char Reine::getSymbole() const {
+	return symbole;
+};
 
 bool Tour::mouvementValide(int pas) {
 
@@ -63,10 +86,23 @@ bool Tour::mouvementValide(int pas) {
 
 };
 
-void Tour::deplacer(pair<char, int> pair) {
-	auto coordonnees = map.find(pair.first);
+void Tour::deplacer(char x, int y) {
+	positionPrecedente = position;
+	auto coordonnees = map.find(x);
 	position.first = coordonnees->second;
-	position.second = pair.second;
+	position.second = y;
+};
+
+const std::pair<int, int> Tour::getPosition() const {
+	return position;
+};
+
+const std::pair<int, int> Tour::getPositionPrecedente() const {
+	return this->positionPrecedente;
+};
+
+const char Tour::getSymbole() const {
+	return symbole;
 };
 
 Echiquier::Echiquier() {
@@ -87,22 +123,24 @@ Echiquier::Echiquier() {
 			board[i][j] = board2[i][j];
 		}
 	}
-	roiA.deplacer({ 'E', 1 });
-	roiB.deplacer({ 'E', 8 });
-	reineA.deplacer({ 'D', 1 });
-	reineB.deplacer({ 'D', 8 });
-	tourAA.deplacer({ 'H', 1 });
-	tourAB.deplacer({ 'A', 1 });
-	tourBA.deplacer({ 'H', 8 });
-	tourBB.deplacer({ 'A', 8 });
+	roiA.deplacer( 'E', 1 );
+	roiB.deplacer( 'E', 8 );
+	reineA.deplacer('D', 1 );
+	reineB.deplacer( 'D', 8 );
+	tourAA.deplacer( 'H', 1 );
+	tourAB.deplacer( 'A', 1 );
+	tourBA.deplacer( 'H', 8 );
+	tourBB.deplacer( 'A', 8 );
 
 };
-void Echiquier::modifierBoard(int x, int y, char symbole){
-	board[y][x] = symbole;
+
+void Echiquier::modifierBoard(const Piece& piece) {
+	board[piece.getPositionPrecedente().second - 1][piece.getPositionPrecedente().first - 1] ='0';
+	board[piece.getPosition().second - 1][piece.getPosition().first - 1] = piece.getSymbole();
 };
 
 void Echiquier::afficher() {
-	//synchroniserBoard();
+	synchroniserBoard();
 	std::cout << "  H G F E D C B A \n";
 	for (int i = 0; i < 8; ++i) {
 		std::cout << i + 1 << "|";
@@ -113,28 +151,14 @@ void Echiquier::afficher() {
 	}
 };
 
-//const shared_ptr<Roi> Echiquier::getRoiA() const {
-//	shared_ptr<Roi> ptrRoi = make_shared<Roi>(roiA);
-//	return ptrRoi;
-//};
-//
-//const shared_ptr<Reine> Echiquier::getReineA() const {
-//	shared_ptr<Reine> ptrReine = make_shared<Reine>(reineA);
-//	return ptrReine;
-//};
-//
-//const shared_ptr<Tour> Echiquier::getTourA() const {
-//	shared_ptr<Tour> ptrRoi = make_shared<Tour>(tourAA);
-//	return ptrRoi;
-//};
-void Echiquier::synchroniserBoard() {
 
-	modifierBoard(reineA.position.first, reineA.position.second, reineA.symbole);
-	modifierBoard(reineB.position.first, reineB.position.second, reineB.symbole);
+void Echiquier::synchroniserBoard() {
+	modifierBoard(reineA);
+	/*modifierBoard(reineB.position.first, reineB.position.second, reineB.symbole);
 	modifierBoard(roiA.position.first, roiA.position.second, roiA.symbole);
 	modifierBoard(roiB.position.first, roiB.position.second, roiB.symbole);
 	modifierBoard(tourAA.position.first, tourAA.position.second, tourAA.symbole);
 	modifierBoard(tourAB.position.first, tourAB.position.second, tourAB.symbole);
 	modifierBoard(tourBA.position.first, tourBA.position.second, tourBA.symbole);
-	modifierBoard(tourBB.position.first, tourBB.position.second, tourBB.symbole);
+	modifierBoard(tourBB.position.first, tourBB.position.second, tourBB.symbole);*/
 };
