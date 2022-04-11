@@ -1,5 +1,6 @@
 #include "echecs.h"
 #include <algorithm>
+#include <vector>
 using namespace std;
 
 
@@ -154,11 +155,25 @@ void Echiquier::afficher() {
 
 void Echiquier::synchroniserBoard() {
 	modifierBoard(reineA);
-	/*modifierBoard(reineB.position.first, reineB.position.second, reineB.symbole);
-	modifierBoard(roiA.position.first, roiA.position.second, roiA.symbole);
-	modifierBoard(roiB.position.first, roiB.position.second, roiB.symbole);
-	modifierBoard(tourAA.position.first, tourAA.position.second, tourAA.symbole);
-	modifierBoard(tourAB.position.first, tourAB.position.second, tourAB.symbole);
-	modifierBoard(tourBA.position.first, tourBA.position.second, tourBA.symbole);
-	modifierBoard(tourBB.position.first, tourBB.position.second, tourBB.symbole);*/
+	modifierBoard(reineB);
+	modifierBoard(roiA);
+	modifierBoard(roiB);
+	modifierBoard(tourAA);
+	modifierBoard(tourAB);
+	modifierBoard(tourBA);
+	modifierBoard(tourBB);
+};
+const shared_ptr<Roi> Echiquier::getRoiA() const {
+	shared_ptr<Roi> ptrRoi = make_shared<Roi>(roiA);
+	return ptrRoi;
+};
+
+const shared_ptr<Reine> Echiquier::getReineA() const {
+	shared_ptr<Reine> ptrReine = make_shared<Reine>(reineA);
+	return ptrReine;
+};
+
+const shared_ptr<Tour> Echiquier::getTourA() const {
+	shared_ptr<Tour> ptrRoi = make_shared<Tour>(tourAA);
+	return ptrRoi;
 };

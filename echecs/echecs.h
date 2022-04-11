@@ -87,8 +87,12 @@ class Echiquier {
 public:
 	Echiquier();
 	void modifierBoard(const Piece& piece);
+	void piece(char x, int y);
 	void synchroniserBoard();
 	void afficher();
+	const std::shared_ptr<Roi> getRoiA() const;
+	const std::shared_ptr<Reine> getReineA() const;
+	const std::shared_ptr<Tour> getTourA() const;
 	Roi roiA;
 	Roi roiB;
 	Reine reineA;
