@@ -1,12 +1,20 @@
-#include "echecs.h"
-#include < stdlib.h >
+#include "Echiquier.h"
+#include "Roi.h"
+#include "Reine.h"
+#include "Tour.h"
+#include "Piece.h"
+#include "InstancesRoiException.h"
+#include <iostream>
+#include <vector>
+#include <stdlib.h>
+
 using namespace std;
 
 
 //TODO:-Completer les fcts deplacer des pieces : DONE
 //Creer une map des coordonnees + attribut position+updater le board DONE 
 //gerer les hors map dans mvmnt valide. N:b fct mvmnt valide doit etre appele dans deplacer() avant de deplacer sinon execption
-vector<shared_ptr<Piece>> f();
+vector<shared_ptr<Piece>> creerPieces();
 
 
 
@@ -15,7 +23,7 @@ int main() {
 	int y = 0 ;
 	try{
 		Echiquier echiquier;
-		auto vec = f();
+		auto vec = creerPieces();
 		for (auto&& elem : vec) {
 			echiquier.pieces.push_back(elem);
 		}
@@ -36,7 +44,7 @@ int main() {
 		cout << "Erreur d'execution : " << except.what() << endl;
 	}
 }
-vector<shared_ptr<Piece>> f(){
+vector<shared_ptr<Piece>> creerPieces(){
 	vector<shared_ptr<Piece>> vec;
 	Roi roiA;
 	vec.push_back(make_shared<Roi>(roiA));
