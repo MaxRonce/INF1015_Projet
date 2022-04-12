@@ -1,0 +1,11 @@
+Determining if the include file pthread.h exists failed with the following output:
+Change Dir: C:/Users/maxro/OneDrive/Cours/INF1015/Projet/Affichage Qt/build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/VisualStudio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_ea227 && [1/2] Building CXX object CMakeFiles\cmTC_ea227.dir\CheckIncludeFile.cxx.obj
+FAILED: CMakeFiles/cmTC_ea227.dir/CheckIncludeFile.cxx.obj 
+D:\VisualStudio\VC\Tools\MSVC\14.30.30705\bin\HostX64\x64\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1 -std:c++17 /showIncludes /FoCMakeFiles\cmTC_ea227.dir\CheckIncludeFile.cxx.obj /FdCMakeFiles\cmTC_ea227.dir\ /FS -c "C:\Users\maxro\OneDrive\Cours\INF1015\Projet\Affichage Qt\build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug\CMakeFiles\CMakeTmp\CheckIncludeFile.cxx"
+C:\Users\maxro\OneDrive\Cours\INF1015\Projet\Affichage Qt\build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug\CMakeFiles\CMakeTmp\CheckIncludeFile.cxx(1): fatal error C1083: Impossible d'ouvrir le fichier include : 'pthread.h' : No such file or directory
+ninja: build stopped: subcommand failed.
+
+
+

@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "ChessQt",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ChessQt::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ChessQt-Debug-24d0db01c82bab2e9ecd.json",
+					"name" : "ChessQt",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ChessQt_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ChessQt_autogen-Debug-4176e7f4a152623661a7.json",
+					"name" : "ChessQt_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ChessQt_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ChessQt_autogen_timestamp_deps-Debug-51d81b8ff8ca92682fe2.json",
+					"name" : "ChessQt_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/maxro/OneDrive/Cours/INF1015/Projet/Affichage Qt/build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug",
+		"source" : "C:/Users/maxro/OneDrive/Cours/INF1015/Projet/Affichage Qt/ChessQt"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

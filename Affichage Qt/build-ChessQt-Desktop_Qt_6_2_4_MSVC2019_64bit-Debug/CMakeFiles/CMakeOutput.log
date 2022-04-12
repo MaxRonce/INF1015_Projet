@@ -1,0 +1,109 @@
+The system is: Windows - 10.0.19043 - AMD64
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: D:/VisualStudio/VC/Tools/MSVC/14.30.30705/bin/HostX64/x64/cl.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+Compilateur d'optimisation Microsoft (R) C/C++ version 19.30.30706 pour x64
+Copyright (C) Microsoft Corporation. Tous droits réservés.
+
+CMakeCXXCompilerId.cpp
+Microsoft (R) Incremental Linker Version 14.30.30706.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/out:CMakeCXXCompilerId.exe 
+CMakeCXXCompilerId.obj 
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.exe"
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.obj"
+
+The CXX compiler identification is MSVC, found in "C:/Users/maxro/OneDrive/Cours/INF1015/Projet/Affichage Qt/build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/CMakeFiles/3.21.1/CompilerIdCXX/CMakeCXXCompilerId.exe"
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: C:/Users/maxro/OneDrive/Cours/INF1015/Projet/Affichage Qt/build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/VisualStudio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_75f36 && [1/2] Building CXX object CMakeFiles\cmTC_75f36.dir\CMakeCXXCompilerABI.cpp.obj
+Remarque : inclusion du fichier :  D:\QtBis\Tools\CMake_64\share\cmake-3.21\Modules\CMakeCompilerABI.h
+[2/2] Linking CXX executable cmTC_75f36.exe
+
+
+
+Performing C++ SOURCE FILE Test HAVE_STDATOMIC succeeded with the following output:
+Change Dir: C:/Users/maxro/OneDrive/Cours/INF1015/Projet/Affichage Qt/build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/VisualStudio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_70b4f && [1/2] Building CXX object CMakeFiles\cmTC_70b4f.dir\src.cxx.obj
+Remarque : inclusion du fichier :  D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\atomic
+Remarque : inclusion du fichier :   D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\yvals.h
+Remarque : inclusion du fichier :    D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\yvals_core.h
+Remarque : inclusion du fichier :     D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\vcruntime.h
+Remarque : inclusion du fichier :      D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\sal.h
+Remarque : inclusion du fichier :       D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\concurrencysal.h
+Remarque : inclusion du fichier :      D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\vadefs.h
+Remarque : inclusion du fichier :     D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\xkeycheck.h
+Remarque : inclusion du fichier :    D:\Windows Kits\10\include\10.0.19041.0\ucrt\crtdbg.h
+Remarque : inclusion du fichier :     D:\Windows Kits\10\include\10.0.19041.0\ucrt\corecrt.h
+Remarque : inclusion du fichier :     D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\vcruntime_new_debug.h
+Remarque : inclusion du fichier :      D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\vcruntime_new.h
+Remarque : inclusion du fichier :    D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\crtdefs.h
+Remarque : inclusion du fichier :    D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\use_ansi.h
+Remarque : inclusion du fichier :   D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\cstddef
+Remarque : inclusion du fichier :    D:\Windows Kits\10\include\10.0.19041.0\ucrt\stddef.h
+Remarque : inclusion du fichier :    D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\xtr1common
+Remarque : inclusion du fichier :   D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\cstdint
+Remarque : inclusion du fichier :    D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\stdint.h
+Remarque : inclusion du fichier :   D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\cstring
+Remarque : inclusion du fichier :    D:\Windows Kits\10\include\10.0.19041.0\ucrt\string.h
+Remarque : inclusion du fichier :     D:\Windows Kits\10\include\10.0.19041.0\ucrt\corecrt_memory.h
+Remarque : inclusion du fichier :      D:\Windows Kits\10\include\10.0.19041.0\ucrt\corecrt_memcpy_s.h
+Remarque : inclusion du fichier :       D:\Windows Kits\10\include\10.0.19041.0\ucrt\errno.h
+Remarque : inclusion du fichier :       D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\vcruntime_string.h
+Remarque : inclusion du fichier :     D:\Windows Kits\10\include\10.0.19041.0\ucrt\corecrt_wstring.h
+Remarque : inclusion du fichier :   D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\xatomic.h
+Remarque : inclusion du fichier :    D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\intrin0.h
+Remarque : inclusion du fichier :     D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\intrin0.inl.h
+Remarque : inclusion du fichier :    D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\type_traits
+Remarque : inclusion du fichier :     D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\xstddef
+Remarque : inclusion du fichier :      D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\cstdlib
+Remarque : inclusion du fichier :       D:\Windows Kits\10\include\10.0.19041.0\ucrt\math.h
+Remarque : inclusion du fichier :        D:\Windows Kits\10\include\10.0.19041.0\ucrt\corecrt_math.h
+Remarque : inclusion du fichier :       D:\Windows Kits\10\include\10.0.19041.0\ucrt\stdlib.h
+Remarque : inclusion du fichier :        D:\Windows Kits\10\include\10.0.19041.0\ucrt\corecrt_malloc.h
+Remarque : inclusion du fichier :        D:\Windows Kits\10\include\10.0.19041.0\ucrt\corecrt_search.h
+Remarque : inclusion du fichier :        D:\Windows Kits\10\include\10.0.19041.0\ucrt\corecrt_wstdlib.h
+Remarque : inclusion du fichier :        D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\limits.h
+Remarque : inclusion du fichier :      D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\initializer_list
+Remarque : inclusion du fichier :   D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\xthreads.h
+Remarque : inclusion du fichier :    D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\climits
+Remarque : inclusion du fichier :    D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\xtimec.h
+Remarque : inclusion du fichier :     D:\VisualStudio\VC\Tools\MSVC\14.30.30705\include\ctime
+Remarque : inclusion du fichier :      D:\Windows Kits\10\include\10.0.19041.0\ucrt\time.h
+Remarque : inclusion du fichier :       D:\Windows Kits\10\include\10.0.19041.0\ucrt\corecrt_wtime.h
+C:\Users\maxro\OneDrive\Cours\INF1015\Projet\Affichage Qt\build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug\CMakeFiles\CMakeTmp\src.cxx(17): warning C4312: 'cast de type' : la conversion de 'unsigned int' en 'void *' d'une taille supérieure
+[2/2] Linking CXX executable cmTC_70b4f.exe
+
+
+Source file was:
+#include <atomic>
+#include <cstdint>
+
+void test(volatile std::atomic<std::int64_t> &a)
+{
+    std::int64_t v = a.load(std::memory_order_acquire);
+    while (!a.compare_exchange_strong(v, v + 1,
+                                      std::memory_order_acq_rel,
+                                      std::memory_order_acquire)) {
+        v = a.exchange(v - 1);
+    }
+    a.store(v + 1, std::memory_order_release);
+}
+
+int main(int, char **)
+{
+    void *ptr = (void*)0xffffffc0; // any random pointer
+    test(*reinterpret_cast<std::atomic<std::int64_t> *>(ptr));
+    return 0;
+}

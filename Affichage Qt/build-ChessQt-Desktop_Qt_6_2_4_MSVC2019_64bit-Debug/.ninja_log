@@ -1,0 +1,40 @@
+# ninja log v5
+3	161	6714363809057434	ChessQt_autogen/timestamp	6f7dffd2f923fb90
+2592	2798	6714363835010383	ChessQt.exe	e2ab7a32cdd0f661
+3	161	6714363809057434	ChessQt_autogen/mocs_compilation.cpp	6f7dffd2f923fb90
+3	161	6714363809057434	C:/Users/maxro/OneDrive/Cours/INF1015/Projet/Affichage Qt/build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/ChessQt_autogen/mocs_compilation.cpp	6f7dffd2f923fb90
+3	161	6714363809057434	C:/Users/maxro/OneDrive/Cours/INF1015/Projet/Affichage Qt/build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/ChessQt_autogen/timestamp	6f7dffd2f923fb90
+641	5499	6714000274936165	CMakeFiles/ChessQt.dir/main.cpp.obj	750f86600548bd9f
+1149	6147	6713994838872860	CMakeFiles/ChessQt.dir/ChessQt_autogen/mocs_compilation.cpp.obj	7e1c259f2e79e6ab
+164	2591	6714363833340003	CMakeFiles/ChessQt.dir/mainwindow.cpp.obj	9054dc847f6fae5b
+1018	4305	6713999701470418	CMakeFiles/ChessQt.dir/ChessConsole.cpp.obj	cddd18d760ecf147
+3	155	6714363961968762	ChessQt_autogen/timestamp	6f7dffd2f923fb90
+3	155	6714363961968762	ChessQt_autogen/mocs_compilation.cpp	6f7dffd2f923fb90
+3	155	6714363961968762	C:/Users/maxro/OneDrive/Cours/INF1015/Projet/Affichage Qt/build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/ChessQt_autogen/timestamp	6f7dffd2f923fb90
+3	155	6714363961968762	C:/Users/maxro/OneDrive/Cours/INF1015/Projet/Affichage Qt/build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/ChessQt_autogen/mocs_compilation.cpp	6f7dffd2f923fb90
+158	2549	6714363985872638	CMakeFiles/ChessQt.dir/mainwindow.cpp.obj	9054dc847f6fae5b
+2549	2771	6714363987688185	ChessQt.exe	e2ab7a32cdd0f661
+3	159	6714364082630005	ChessQt_autogen/timestamp	6f7dffd2f923fb90
+3	159	6714364082630005	ChessQt_autogen/mocs_compilation.cpp	6f7dffd2f923fb90
+3	159	6714364082630005	C:/Users/maxro/OneDrive/Cours/INF1015/Projet/Affichage Qt/build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/ChessQt_autogen/timestamp	6f7dffd2f923fb90
+3	159	6714364082630005	C:/Users/maxro/OneDrive/Cours/INF1015/Projet/Affichage Qt/build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/ChessQt_autogen/mocs_compilation.cpp	6f7dffd2f923fb90
+162	2525	6714364106260843	CMakeFiles/ChessQt.dir/mainwindow.cpp.obj	9054dc847f6fae5b
+2525	2721	6714364107830980	ChessQt.exe	e2ab7a32cdd0f661
+2	162	6714364348896605	ChessQt_autogen/timestamp	6f7dffd2f923fb90
+2	162	6714364348896605	ChessQt_autogen/mocs_compilation.cpp	6f7dffd2f923fb90
+2	162	6714364348896605	C:/Users/maxro/OneDrive/Cours/INF1015/Projet/Affichage Qt/build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/ChessQt_autogen/timestamp	6f7dffd2f923fb90
+2	162	6714364348896605	C:/Users/maxro/OneDrive/Cours/INF1015/Projet/Affichage Qt/build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/ChessQt_autogen/mocs_compilation.cpp	6f7dffd2f923fb90
+164	2601	6714364373256011	CMakeFiles/ChessQt.dir/mainwindow.cpp.obj	9054dc847f6fae5b
+2602	2816	6714364375017419	ChessQt.exe	e2ab7a32cdd0f661
+3	221	6714433596184999	ChessQt_autogen/timestamp	6f7dffd2f923fb90
+3	221	6714433596184999	ChessQt_autogen/mocs_compilation.cpp	6f7dffd2f923fb90
+3	221	6714433596184999	C:/Users/maxro/OneDrive/Cours/INF1015/Projet/Affichage Qt/build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/ChessQt_autogen/timestamp	6f7dffd2f923fb90
+3	221	6714433596184999	C:/Users/maxro/OneDrive/Cours/INF1015/Projet/Affichage Qt/build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/ChessQt_autogen/mocs_compilation.cpp	6f7dffd2f923fb90
+224	2728	6714433621242733	CMakeFiles/ChessQt.dir/mainwindow.cpp.obj	9054dc847f6fae5b
+2729	3067	6714433624123385	ChessQt.exe	e2ab7a32cdd0f661
+4	173	6714435313900633	ChessQt_autogen/timestamp	6f7dffd2f923fb90
+4	173	6714435313900633	ChessQt_autogen/mocs_compilation.cpp	6f7dffd2f923fb90
+4	173	6714435313900633	C:/Users/maxro/OneDrive/Cours/INF1015/Projet/Affichage Qt/build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/ChessQt_autogen/timestamp	6f7dffd2f923fb90
+4	173	6714435313900633	C:/Users/maxro/OneDrive/Cours/INF1015/Projet/Affichage Qt/build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/ChessQt_autogen/mocs_compilation.cpp	6f7dffd2f923fb90
+175	2629	6714435338453110	CMakeFiles/ChessQt.dir/mainwindow.cpp.obj	9054dc847f6fae5b
+2630	2827	6714435339989025	ChessQt.exe	e2ab7a32cdd0f661

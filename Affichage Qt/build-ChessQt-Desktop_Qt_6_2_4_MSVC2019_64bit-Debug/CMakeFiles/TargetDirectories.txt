@@ -1,0 +1,5 @@
+C:/Users/maxro/OneDrive/Cours/INF1015/Projet/Affichage Qt/build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/CMakeFiles/ChessQt.dir
+C:/Users/maxro/OneDrive/Cours/INF1015/Projet/Affichage Qt/build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/CMakeFiles/edit_cache.dir
+C:/Users/maxro/OneDrive/Cours/INF1015/Projet/Affichage Qt/build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/maxro/OneDrive/Cours/INF1015/Projet/Affichage Qt/build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/CMakeFiles/ChessQt_autogen_timestamp_deps.dir
+C:/Users/maxro/OneDrive/Cours/INF1015/Projet/Affichage Qt/build-ChessQt-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/CMakeFiles/ChessQt_autogen.dir
