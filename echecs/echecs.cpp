@@ -1,6 +1,5 @@
 #include "echecs.h"
 #include <algorithm>
-#include <vector>
 using namespace std;
 
 
@@ -43,6 +42,10 @@ const std::pair<int, int> Roi::getPositionPrecedente() const {
 	return this->positionPrecedente;
 };
 
+void Roi::setPositionPrecedente() {
+	positionPrecedente = getPosition();
+};
+
 const char Roi::getSymbole() const {
 	return symbole;
 };
@@ -67,7 +70,9 @@ const std::pair<int, int> Reine::getPosition() const {
 const std::pair<int, int> Reine::getPositionPrecedente() const {
 	return this->positionPrecedente;
 };
-
+void Reine::setPositionPrecedente() {
+	positionPrecedente = getPosition();
+};
 const char Reine::getSymbole() const {
 	return symbole;
 };
@@ -102,6 +107,10 @@ const std::pair<int, int> Tour::getPositionPrecedente() const {
 	return this->positionPrecedente;
 };
 
+void Tour::setPositionPrecedente() {
+	positionPrecedente = getPosition();
+};
+
 const char Tour::getSymbole() const {
 	return symbole;
 };
@@ -109,14 +118,14 @@ const char Tour::getSymbole() const {
 Echiquier::Echiquier() {
 	char board2[8][8] = {
 		//  H    G    F    E    D    C    B    A 
-		 { 'T', '0', '0', 'K', 'Q', '0', '0', 'T',},//1
+		 { '0', '0', '0', '0', '0', '0', '0', '0',},//1
 		 { '0', '0', '0', '0', '0', '0', '0', '0' },//2
 		 { '0', '0', '0', '0', '0', '0', '0', '0' },//3
 		 { '0', '0', '0', '0', '0', '0', '0', '0' },//4
 		 { '0', '0', '0', '0', '0', '0', '0', '0' },//5
 		 { '0', '0', '0', '0', '0', '0', '0', '0' },//6
 		 { '0', '0', '0', '0', '0', '0', '0', '0' },//7
-		 { 'T', '0', '0', 'K', 'Q', '0', '0', 'T' },//8
+		 { '0', '0', '0', '0', '0', '0', '0', '0' },//8
 	};
 
 	for (int i = 0; i < 8; ++i) {
@@ -124,22 +133,27 @@ Echiquier::Echiquier() {
 			board[i][j] = board2[i][j];
 		}
 	}
-	roiA.deplacer( 'E', 1 );
-	roiB.deplacer( 'E', 8 );
-	reineA.deplacer('D', 1 );
-	reineB.deplacer( 'D', 8 );
-	tourAA.deplacer( 'H', 1 );
-	tourAB.deplacer( 'A', 1 );
-	tourBA.deplacer( 'H', 8 );
-	tourBB.deplacer( 'A', 8 );
 
 };
 
-void Echiquier::modifierBoard(const Piece& piece) {
-	board[piece.getPositionPrecedente().second - 1][piece.getPositionPrecedente().first - 1] ='0';
-	board[piece.getPosition().second - 1][piece.getPosition().first - 1] = piece.getSymbole();
-};
-
+void Echiquier::initialisation(){
+	pieces[0]->deplacer('E', 1);
+	pieces[0]->setPositionPrecedente();
+	pieces[1]->deplacer('E', 8);
+	pieces[1]->setPositionPrecedente();
+	pieces[2]->deplacer('D', 1);
+	pieces[2]->setPositionPrecedente();
+	pieces[3]->deplacer('D', 8);
+	pieces[3]->setPositionPrecedente();
+	pieces[4]->deplacer('H', 1);
+	pieces[4]->setPositionPrecedente();
+	pieces[5]->deplacer('A', 1);
+	pieces[5]->setPositionPrecedente();
+	pieces[6]->deplacer('H', 8);
+	pieces[6]->setPositionPrecedente();
+	pieces[7]->deplacer('A', 8);
+	pieces[7]->setPositionPrecedente();
+}
 void Echiquier::afficher() {
 	synchroniserBoard();
 	std::cout << "  H G F E D C B A \n";
@@ -152,28 +166,13 @@ void Echiquier::afficher() {
 	}
 };
 
+void Echiquier::modifierBoard(const Piece& piece) {
+	board[piece.getPositionPrecedente().second - 1][piece.getPositionPrecedente().first - 1] ='0';
+	board[piece.getPosition().second - 1][piece.getPosition().first - 1] = piece.getSymbole();
+};
 
 void Echiquier::synchroniserBoard() {
-	modifierBoard(reineA);
-	modifierBoard(reineB);
-	modifierBoard(roiA);
-	modifierBoard(roiB);
-	modifierBoard(tourAA);
-	modifierBoard(tourAB);
-	modifierBoard(tourBA);
-	modifierBoard(tourBB);
-};
-const shared_ptr<Roi> Echiquier::getRoiA() const {
-	shared_ptr<Roi> ptrRoi = make_shared<Roi>(roiA);
-	return ptrRoi;
-};
-
-const shared_ptr<Reine> Echiquier::getReineA() const {
-	shared_ptr<Reine> ptrReine = make_shared<Reine>(reineA);
-	return ptrReine;
-};
-
-const shared_ptr<Tour> Echiquier::getTourA() const {
-	shared_ptr<Tour> ptrRoi = make_shared<Tour>(tourAA);
-	return ptrRoi;
+	for(shared_ptr<Piece> i : pieces){
+		modifierBoard(*i.get());
+	}
 };

@@ -12,6 +12,7 @@ public:
 	std::map<char, int> map{ {'A', 8}, {'B', 7},{'C', 6},{'D', 5},{'E', 4}, {'F', 3}, {'G', 2},{'H', 1}};
 	virtual const std::pair<int, int> getPosition() const = 0;
 	virtual const std::pair<int, int> getPositionPrecedente() const = 0;
+	virtual void setPositionPrecedente() = 0;
 	virtual const char getSymbole() const = 0;
 
 private:
@@ -29,6 +30,7 @@ public:
 	void deplacer(char x, int y) override;
 	const std::pair<int, int> getPosition() const override;
 	const std::pair<int, int> getPositionPrecedente() const override;
+	void setPositionPrecedente() override;
 	const char getSymbole() const override;
 	~Roi();
 	static int inline compteurInstance;
@@ -55,6 +57,7 @@ public:
 	void deplacer(char x, int y) override;
 	const std::pair<int, int> getPosition() const override;
 	const std::pair<int, int> getPositionPrecedente() const override;
+	void setPositionPrecedente() override;
 	const char getSymbole() const override;
 
 private:
@@ -72,6 +75,7 @@ public:
 	void deplacer(char x, int y) override;
 	const std::pair<int, int> getPosition() const override;
 	const std::pair<int, int> getPositionPrecedente() const override;
+	void setPositionPrecedente() override;
 	const char getSymbole() const override;
 private:
 
@@ -86,21 +90,11 @@ private:
 class Echiquier {
 public:
 	Echiquier();
+	void initialisation();
 	void modifierBoard(const Piece& piece);
-	void piece(char x, int y);
 	void synchroniserBoard();
 	void afficher();
-	const std::shared_ptr<Roi> getRoiA() const;
-	const std::shared_ptr<Reine> getReineA() const;
-	const std::shared_ptr<Tour> getTourA() const;
-	Roi roiA;
-	Roi roiB;
-	Reine reineA;
-	Reine reineB;
-	Tour tourAA;
-	Tour tourAB;
-	Tour tourBA;
-	Tour tourBB;
+	std::vector<std::shared_ptr<Piece>> pieces;
 
 private:
 	char board[8][8] = {}; //[colonne] [ligne]
