@@ -1,4 +1,7 @@
 #include "Echiquier.h"
+#include "Roi.h"
+#include "Reine.h"
+#include "Tour.h"
 #include <iostream>
 using namespace std;
 
@@ -20,6 +23,24 @@ Echiquier::Echiquier() {
 			board[i][j] = board2[i][j];
 		}
 	}
+
+		Roi roiA;
+		pieces.push_back(make_shared<Roi>(roiA));
+		Roi roiB;
+		pieces.push_back(make_shared<Roi>(roiB));
+		Reine reineA;
+		pieces.push_back(make_shared<Reine>(reineA));
+		Reine reineB;
+		pieces.push_back(make_shared<Reine>(reineB));
+		Tour tourAA;
+		pieces.push_back(make_shared<Tour>(tourAA));
+		Tour tourAB;
+		pieces.push_back(make_shared<Tour>(tourAB));
+		Tour tourBA;
+		pieces.push_back(make_shared<Tour>(tourBA));
+		Tour tourBB;
+		pieces.push_back(make_shared<Tour>(tourBB));
+		initialisation();
 
 };
 
@@ -63,3 +84,10 @@ void Echiquier::synchroniserBoard() {
 		modifierBoard(*i.get());
 	}
 };
+shared_ptr<Piece> Echiquier::trouverPiece(char x, int y) {
+	for (auto&& elem : pieces) {
+		if (elem->getPosition().first == elem->map.find(x)->second && elem->getPosition().second == y) {
+			return elem;
+		}
+	}
+}

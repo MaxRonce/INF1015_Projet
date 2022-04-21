@@ -6,25 +6,25 @@
 using namespace std;
 Roi::Roi()
 {
+	symbole = 'K';
+	if (compteurInstance > 2) {
+		throw InstancesRoiException("More than 2 Instances of KING");
+	}
 	++compteurInstance;
-	if (compteurInstance > 2)
-		throw InstancesRoiException("Plus que 2 instances de Roi");
 };
 
 Roi::~Roi() { --compteurInstance; };
 
-bool Roi::mouvementValide(int pas) {
-
-	std::vector<pair<int, int>> mouvementsAutorises{ {x_ , y_ - pas }, {x_ , y_ + pas }, {x_ - pas, y_}, {x_ + pas, y_ }, {x_ - pas, y_ - pas }, {x_ + pas, y_ + pas }, {x_ - pas, y_ + pas}, {x_ + pas, y_ - pas } };
+bool Roi::mouvementValide() {
+	int pas = 1;
+	int x = position.first;
+	int y = position.second;
+	std::vector<pair<int, int>> mouvementsAutorises{ {x, y - pas }, {x , y + pas }, {x - pas, y}, {x + pas, y }, {x - pas, y - pas }, {x + pas, y + pas }, {x - pas, y + pas}, {x + pas, y - pas } };
 	if (find(mouvementsAutorises.begin(), mouvementsAutorises.end(), position) != mouvementsAutorises.end()) {
 		return true;
 	}
-	else {
-		if (*mouvementsAutorises.end() == position) {
-			return true;
-		}
-		return false;
-	}
+	position = positionPrecedente;
+	return false;
 
 };
 
@@ -36,17 +36,8 @@ void Roi::deplacer(char x, int y) {
 
 };
 
-const std::pair<int, int> Roi::getPosition() const {
-	return position;
-};
-const std::pair<int, int> Roi::getPositionPrecedente() const {
-	return this->positionPrecedente;
-};
 
 void Roi::setPositionPrecedente() {
 	positionPrecedente = getPosition();
 };
 
-const char Roi::getSymbole() const {
-	return symbole;
-};
