@@ -5,13 +5,10 @@
 using namespace std;
 
 Queen::Queen() {
-	
-	symbol= 'Q';
+
+	symbol = 'Q';
 }
 bool Queen::validMove() {
-	if (position.first) {
-		return false;
-	}
 	return true;
 
 };
@@ -22,4 +19,3 @@ void Queen::move(char x, int y) {
 	position.first = coordonnees->second;
 	position.second = y;
 };
-

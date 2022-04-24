@@ -5,8 +5,8 @@
 using namespace std;
 
 Rook::Rook() {
-	
-	symbol= 'T';
+
+	symbol = 'T';
 }
 bool Rook::validMove() {
 	int x = position.first;
@@ -27,6 +27,3 @@ void Rook::move(char x, int y) {
 	position.first = coordonnees->second;
 	position.second = y;
 };
-
-
-

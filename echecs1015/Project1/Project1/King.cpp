@@ -35,7 +35,3 @@ void King::move(char x, int y) {
 	position.second = y;
 
 };
-
-
-
-

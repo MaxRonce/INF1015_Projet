@@ -24,33 +24,33 @@ ChessBoard::ChessBoard() {
 		}
 	}
 
-		
-	
-		King kingA;
-		pieces.push_back(make_shared<King>(kingA));
-		
-		King kingB;
-		pieces.push_back(make_shared<King>(kingB));
-		
-		Queen queenA;
-		pieces.push_back(make_shared<Queen>(queenA));
-		
-		Queen queenB;
-		pieces.push_back(make_shared<Queen>(queenB));
-		
-		Rook rookAA;
-		pieces.push_back(make_shared<Rook>(rookAA));
-		
-		Rook rookAB;
-		pieces.push_back(make_shared<Rook>(rookAB));
-		
-		Rook rookBA;
-		pieces.push_back(make_shared<Rook>(rookBA));
-	
-		Rook rookBB;
-		pieces.push_back(make_shared<Rook>(rookBA));
-	
-		initialisation();
+
+
+	King kingA;
+	pieces.push_back(make_shared<King>(kingA));
+
+	King kingB;
+	pieces.push_back(make_shared<King>(kingB));
+
+	Queen queenA;
+	pieces.push_back(make_shared<Queen>(queenA));
+
+	Queen queenB;
+	pieces.push_back(make_shared<Queen>(queenB));
+
+	Rook rookAA;
+	pieces.push_back(make_shared<Rook>(rookAA));
+
+	Rook rookAB;
+	pieces.push_back(make_shared<Rook>(rookAB));
+
+	Rook rookBA;
+	pieces.push_back(make_shared<Rook>(rookBA));
+
+	Rook rookBB;
+	pieces.push_back(make_shared<Rook>(rookBA));
+
+	initialisation();
 
 };
 
@@ -103,21 +103,22 @@ shared_ptr<Piece> ChessBoard::findPiece(char x, int y) {
 	return nullptr;
 }
 
-void ChessBoard::deletePiece(vector<shared_ptr<Piece>> vecteur, shared_ptr<Piece> piece) {
-	for (int i = 0; i < vecteur.size(); ++i) {
-		if (vecteur[i] == piece) {
-			vecteur.erase(vecteur.begin() + i);
+void ChessBoard::deletePiece(shared_ptr<Piece> piece) {
+	for (int i = 0; i < pieces.size(); ++i) {
+		if (pieces[i] == piece) {
+			pieces.erase(pieces.begin() + i);
 		}
 	}
 }
 
-bool ChessBoard::isOccupied(const std::pair<int, int>& position)
+bool ChessBoard::caseIsOccupied(const shared_ptr<Piece> piece)
 {
-	if (board[position.second][this->map.find(position.first)->second] != '0') {
+	if (board[piece->getPosition().second][piece->getPosition().first] != '0') {
 		return true;
 	}
 	return false;
 }
+
 bool ChessBoard::isKing(Piece* piece) {
 	auto ptr = dynamic_cast<King*>(piece);
 	if (ptr != nullptr) {
@@ -137,5 +138,20 @@ bool ChessBoard::isRook(Piece* piece) {
 	if (ptr != nullptr) {
 		return true;
 	}
-	return false;
+	return false; 
+}
+
+void ChessBoard::capturePiece(shared_ptr<Piece> piece) {
+	if (piece != nullptr) {
+		capturedPieces.push_back(piece);
+	}
+	//Pour des fins de debogage
+	/*for (auto&& elem : capturedPieces) {
+		cout << elem->getSymbol() << elem->getPosition().first << " " << elem->getPosition().second << endl;
+	}
+	cout << endl;*/
+	deletePiece(piece);
+	/*for (auto&& elem : pieces) {
+		cout << elem->getSymbol() << elem->getPosition().first << " " << elem->getPosition().second << endl;
+	}*/
 }
