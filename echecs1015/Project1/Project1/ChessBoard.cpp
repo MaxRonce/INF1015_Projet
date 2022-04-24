@@ -2,6 +2,9 @@
 #include "King.h"
 #include "Queen.h"
 #include "Rook.h"
+#include "Bishop.h"
+#include "Knight.h"
+#include "Pawn.h"
 #include <iostream>
 using namespace std;
 
@@ -23,54 +26,51 @@ ChessBoard::ChessBoard() {
 			board[i][j] = board2[i][j];
 		}
 	}
-
-
-
-	King kingA;
-	pieces.push_back(make_shared<King>(kingA));
-
-	King kingB;
-	pieces.push_back(make_shared<King>(kingB));
-
-	Queen queenA;
-	pieces.push_back(make_shared<Queen>(queenA));
-
-	Queen queenB;
-	pieces.push_back(make_shared<Queen>(queenB));
-
-	Rook rookAA;
-	pieces.push_back(make_shared<Rook>(rookAA));
-
-	Rook rookAB;
-	pieces.push_back(make_shared<Rook>(rookAB));
-
-	Rook rookBA;
-	pieces.push_back(make_shared<Rook>(rookBA));
-
-	Rook rookBB;
-	pieces.push_back(make_shared<Rook>(rookBA));
-
+	createPieces();
+	initialPositions = {
+		{'E', 1}, {'E', 8 },{'D', 1}, {'D', 8},{'H', 1}, 
+		{'H', 8 },{'A', 1}, {'A', 8 },{'F', 1}, {'F', 8 },
+		{'C', 1}, {'C', 8 },{'G', 1}, {'G', 8 },{'B', 1}, 
+		{'B', 8 },{'A', 2}, {'A', 7 },{'B', 2}, {'B', 7 },
+		{'C', 2}, {'C', 7 },{'D', 2}, {'D', 7 },{'E', 2},
+		{'E', 7 },{'F', 2},{'F', 7 },{'G', 2}, {'G', 7 },
+		{'H', 2}, {'H',7 }
+	};
 	initialisation();
 
 };
 
+void ChessBoard::createPieces() {
+	pieces.push_back(make_shared<King>(King("White")));
+	pieces.push_back(make_shared<King>(King("Black")));
+	pieces.push_back(make_shared<Queen>(Queen("White")));
+	pieces.push_back(make_shared<Queen>(Queen("Black")));
+	for (int i = 0; i < 2; ++i) {
+		pieces.push_back(make_shared<Rook>(Rook("White")));
+		pieces.push_back(make_shared<Rook>(Rook("Black")));
+	}
+	for (int i = 0; i < 2; ++i) {
+		pieces.push_back(make_shared<Bishop>(Bishop("White")));
+		pieces.push_back(make_shared<Bishop>(Bishop("Black")));
+	}
+	for (int i = 0; i < 2; ++i) {
+		pieces.push_back(make_shared<Knight>(Knight("White")));
+		pieces.push_back(make_shared<Knight>(Knight("Black")));
+	}
+
+	for (int i = 0; i < 8; ++i) {
+		pieces.push_back(make_shared<Pawn>(Pawn("White")));
+		pieces.push_back(make_shared<Pawn>(Pawn("Black")));
+	}
+
+}
+
 void ChessBoard::initialisation() {
-	pieces[0]->move('E', 1);
-	pieces[0]->setPreviousPosition();
-	pieces[1]->move('E', 8);
-	pieces[1]->setPreviousPosition();
-	pieces[2]->move('D', 1);
-	pieces[2]->setPreviousPosition();
-	pieces[3]->move('D', 8);
-	pieces[3]->setPreviousPosition();
-	pieces[4]->move('H', 1);
-	pieces[4]->setPreviousPosition();
-	pieces[5]->move('A', 1);
-	pieces[5]->setPreviousPosition();
-	pieces[6]->move('H', 8);
-	pieces[6]->setPreviousPosition();
-	pieces[7]->move('A', 8);
-	pieces[7]->setPreviousPosition();
+	for (int i = 0; i < pieces.size(); ++i) {
+		pieces[i]->move(initialPositions[i].first, initialPositions[i].second);
+		pieces[i]->setPreviousPosition();
+	}
+
 }
 void ChessBoard::show() {
 	synchronise();

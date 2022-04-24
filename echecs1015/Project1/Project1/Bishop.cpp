@@ -1,14 +1,12 @@
-#include "Rook.h"
-#include <iostream>
-#include <utility>
-#include <vector>
-using namespace std;
+#pragma once
+#include "Bishop.h"
 
-Rook::Rook(std::string color) {
+
+Bishop::Bishop(std::string color) {
 	color_ = color;
-	symbol = 'R';
+	symbol = 'B';
 }
-bool Rook::validMove(char i, int y) {
+bool Bishop::validMove(char  i, int y){
 	int x = this->map.find(i)->second;
 	int step = 0;
 	if (x - position.first == 0) {
@@ -17,11 +15,10 @@ bool Rook::validMove(char i, int y) {
 	else {
 		step = abs(x - position.first);
 	}
-	mouvementsAutorises = { { x, y - step }, { x , y + step }, { x - step, y }, { x + step, y } };
+	mouvementsAutorises = { { x-step, y - step }, { x- step , y + step }, { x + step, y+step }, { x +step, y -step } };
 	if (find(mouvementsAutorises.begin(), mouvementsAutorises.end(), position) != mouvementsAutorises.end()) {
 		return true;
 	}
 	return false;
 
-};
-
+}

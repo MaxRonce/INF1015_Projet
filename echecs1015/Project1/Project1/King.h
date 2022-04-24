@@ -3,9 +3,8 @@
 
 class King : public Piece {
 public:
-	King();
-	bool validMove() override;
-	void move(char x, int y) override;
+	King(std::string color);
+	bool validMove(char x, int y) override;
 	~King();
 
 private:

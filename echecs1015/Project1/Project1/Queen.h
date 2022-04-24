@@ -3,7 +3,6 @@
 
 class Queen : public Piece {
 public:
-	Queen();
-	bool validMove() override;
-	void move(char x, int y) override;
+	Queen(std::string color);
+	bool validMove(char x, int y) override;
 };

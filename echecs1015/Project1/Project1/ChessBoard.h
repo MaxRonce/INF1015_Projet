@@ -16,6 +16,7 @@ private:
 	bool isKing(Piece* piece);
 	bool isQueen(Piece* piece);
 	bool isRook(Piece* piece);
+	void createPieces();
 	void deletePiece(std::shared_ptr<Piece> piece);
 	void modify(const Piece& piece);
 	void synchronise();
@@ -23,5 +24,6 @@ private:
 	std::vector<std::shared_ptr<Piece>> capturedPieces;
 	void initialisation();
 	char board[8][8] = {}; //[colonne] [ligne]
+	std::vector<std::pair<char, int>> initialPositions;
 
 };

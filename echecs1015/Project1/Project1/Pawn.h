@@ -1,9 +1,8 @@
 #pragma once
 #include "Piece.h"
-
-class Rook : public Piece {
+class Pawn : public Piece
+{
 public:
-	Rook(std::string color);
+	Pawn(std::string color);
 	bool validMove(char x, int y) override;
-
 };

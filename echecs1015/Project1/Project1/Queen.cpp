@@ -4,18 +4,13 @@
 
 using namespace std;
 
-Queen::Queen() {
-
+Queen::Queen(std::string color) {
+	color_ = color;
 	symbol = 'Q';
+	
 }
-bool Queen::validMove() {
+bool Queen::validMove(char  x, int y) {
 	return true;
 
 };
 
-void Queen::move(char x, int y) {
-	previousPosition = position;
-	auto coordonnees = map.find(x);
-	position.first = coordonnees->second;
-	position.second = y;
-};

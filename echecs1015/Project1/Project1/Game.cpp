@@ -43,21 +43,14 @@ void Game::processEvent(shared_ptr<Piece> piece) {
 	int y = 0;
 	cout << "\nYour Next Move : \n";
 	cin >> x >> y;
+	while (!piece->validMove(x, y)) {
+		cout << "\nInvalid Move, Please Insert Valid Move : \n";
+		cin >> x >> y;
+	}
 	auto attackedPiece = chessBoard_->findPiece(x, y);
 	chessBoard_->capturePiece(attackedPiece);
 	piece->move(x, y);
 	if (chessBoard_->isCheckMate(attackedPiece)){
 		this->end = true;
-	}
-	while (!piece->validMove()) {
-		cout << "\nInvalid Move, Please Insert Valid Move : \n";
-		cin >> x >> y;
-		auto attackedPiece = chessBoard_->findPiece(x, y);
-		if (chessBoard_->isCheckMate(attackedPiece)) {
-			this->end = true;
-			break;
-		}
-		chessBoard_->capturePiece(attackedPiece);
-		piece->move(x, y);
 	}
 }
