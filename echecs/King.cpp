@@ -1,21 +1,21 @@
-#include "Roi.h"
-#include "InstancesRoiException.h"
+#include "King.h"
+#include "InstancesKingException.h"
 #include <iostream>
 #include <utility>
 #include <vector>
 using namespace std;
-Roi::Roi()
+King::King()
 {
-	symbole = 'K';
+	symbol = 'K';
 	if (compteurInstance > 2) {
-		throw InstancesRoiException("More than 2 Instances of KING");
+		throw InstancesKingException("More than 2 Instances of KING");
 	}
 	++compteurInstance;
 };
 
-Roi::~Roi() { --compteurInstance; };
+King::~King() { --compteurInstance; };
 
-bool Roi::mouvementValide() {
+bool King::validMove() {
 	int pas = 1;
 	int x = position.first;
 	int y = position.second;
@@ -23,13 +23,13 @@ bool Roi::mouvementValide() {
 	if (find(mouvementsAutorises.begin(), mouvementsAutorises.end(), position) != mouvementsAutorises.end()) {
 		return true;
 	}
-	position = positionPrecedente;
+	position = previousPosition;
 	return false;
 
 };
 
-void Roi::deplacer(char x, int y) {
-	positionPrecedente = position;
+void King::move(char x, int y) {
+	previousPosition = position;
 	auto coordonnees = map.find(x);
 	position.first = coordonnees->second;
 	position.second = y;
@@ -37,7 +37,5 @@ void Roi::deplacer(char x, int y) {
 };
 
 
-void Roi::setPositionPrecedente() {
-	positionPrecedente = getPosition();
-};
+
 
