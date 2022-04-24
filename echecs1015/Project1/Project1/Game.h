@@ -14,6 +14,7 @@ private:
 	std::shared_ptr<Piece> userChoosePiece();
 	void processEvent(std::shared_ptr<Piece> piece);
 	ChessBoard* chessBoard_;
+	bool end=false;
 
 };
 

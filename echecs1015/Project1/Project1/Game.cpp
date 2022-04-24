@@ -2,22 +2,23 @@
 #include <iostream>
 #include <stdlib.h>
 using namespace std;
+
 Game::Game():
-chessBoard_(new ChessBoard) {
+chessBoard_(new ChessBoard){
 }
 void Game::start() {
 	gameGUI();
-	processEvent(userChoosePiece());
 }
 void Game::gameGUI() {
 	try {
 		std::cout << "Welcome Player, To Chess Game\n";
-		while (true) {
+		while (!end) {
 			chessBoard_->show();
 			auto piece = userChoosePiece();
 			processEvent(piece);
 			system("CLS");
 		}
+		cout << "Game Over, Check Mate";
 	}
 	catch (InstancesKingException& except) {
 		cout << "Execution Error : " << except.what() << endl;
@@ -45,9 +46,18 @@ void Game::processEvent(shared_ptr<Piece> piece) {
 	auto attackedPiece = chessBoard_->findPiece(x, y);
 	chessBoard_->capturePiece(attackedPiece);
 	piece->move(x, y);
+	if (chessBoard_->isCheckMate(attackedPiece)){
+		this->end = true;
+	}
 	while (!piece->validMove()) {
 		cout << "\nInvalid Move, Please Insert Valid Move : \n";
 		cin >> x >> y;
+		auto attackedPiece = chessBoard_->findPiece(x, y);
+		if (chessBoard_->isCheckMate(attackedPiece)) {
+			this->end = true;
+			break;
+		}
+		chessBoard_->capturePiece(attackedPiece);
 		piece->move(x, y);
 	}
 }

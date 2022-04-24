@@ -144,14 +144,22 @@ bool ChessBoard::isRook(Piece* piece) {
 void ChessBoard::capturePiece(shared_ptr<Piece> piece) {
 	if (piece != nullptr) {
 		capturedPieces.push_back(piece);
+		deletePiece(piece);
 	}
-	//Pour des fins de debogage
+	//for debugging
 	/*for (auto&& elem : capturedPieces) {
 		cout << elem->getSymbol() << elem->getPosition().first << " " << elem->getPosition().second << endl;
 	}
 	cout << endl;*/
-	deletePiece(piece);
 	/*for (auto&& elem : pieces) {
 		cout << elem->getSymbol() << elem->getPosition().first << " " << elem->getPosition().second << endl;
 	}*/
+}
+
+bool ChessBoard::isCheckMate(std::shared_ptr<Piece> piece) {
+	if (isKing(piece.get())) {
+		return true;
+
+	}
+	return false;
 }
