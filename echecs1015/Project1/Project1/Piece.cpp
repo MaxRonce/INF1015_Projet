@@ -27,6 +27,3 @@ void Piece::setColor(std::string newColor) {
 std::string Piece::getColor() const {
 	return color_;
 }
-void Piece::setPreviousPosition() {
-	previousPosition = getPosition();
-};

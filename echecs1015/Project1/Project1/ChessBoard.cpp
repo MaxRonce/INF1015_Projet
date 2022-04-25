@@ -45,20 +45,24 @@ void ChessBoard::createPieces() {
 	pieces.push_back(make_shared<King>(King("Black")));
 	pieces.push_back(make_shared<Queen>(Queen("White")));
 	pieces.push_back(make_shared<Queen>(Queen("Black")));
-	for (int i = 0; i < 2; ++i) {
+	int pairRook = 2;
+	int pairBishop = 2;
+	int pairKnight = 2;
+	int pairPawn = 8;
+	for (int i = 0; i < pairRook; ++i) {
 		pieces.push_back(make_shared<Rook>(Rook("White")));
 		pieces.push_back(make_shared<Rook>(Rook("Black")));
 	}
-	for (int i = 0; i < 2; ++i) {
+	for (int i = 0; i < pairBishop; ++i) {
 		pieces.push_back(make_shared<Bishop>(Bishop("White")));
 		pieces.push_back(make_shared<Bishop>(Bishop("Black")));
 	}
-	for (int i = 0; i < 2; ++i) {
+	for (int i = 0; i < pairKnight; ++i) {
 		pieces.push_back(make_shared<Knight>(Knight("White")));
 		pieces.push_back(make_shared<Knight>(Knight("Black")));
 	}
 
-	for (int i = 0; i < 8; ++i) {
+	for (int i = 0; i < pairPawn; ++i) {
 		pieces.push_back(make_shared<Pawn>(Pawn("White")));
 		pieces.push_back(make_shared<Pawn>(Pawn("Black")));
 	}
@@ -68,10 +72,9 @@ void ChessBoard::createPieces() {
 void ChessBoard::initialisation() {
 	for (int i = 0; i < pieces.size(); ++i) {
 		pieces[i]->move(initialPositions[i].first, initialPositions[i].second);
-		pieces[i]->setPreviousPosition();
 	}
-
 }
+
 void ChessBoard::show() {
 	synchronise();
 	std::cout << "  H G F E D C B A \n";
@@ -84,14 +87,14 @@ void ChessBoard::show() {
 	}
 };
 
-void ChessBoard::modify(const Piece& piece) {
+void ChessBoard::modifyPosition(const Piece& piece) {
 	board[piece.getPreviousPosition().second - 1][piece.getPreviousPosition().first - 1] = '0';
 	board[piece.getPosition().second - 1][piece.getPosition().first - 1] = piece.getSymbol();
 };
-
-void ChessBoard::synchronise() {
+//synchronise() is used to update the board each time we change a piece's position, it updates the printed board
+void ChessBoard::synchronise() { 
 	for (shared_ptr<Piece> i : pieces) {
-		modify(*i.get());
+		modifyPosition(*i.get());
 	}
 };
 shared_ptr<Piece> ChessBoard::findPiece(char x, int y) {
@@ -119,27 +122,6 @@ bool ChessBoard::caseIsOccupied(const shared_ptr<Piece> piece)
 	return false;
 }
 
-bool ChessBoard::isKing(Piece* piece) {
-	auto ptr = dynamic_cast<King*>(piece);
-	if (ptr != nullptr) {
-		return true;
-	}
-	return false;
-}
-bool ChessBoard::isQueen(Piece* piece) {
-	auto ptr = dynamic_cast<Queen*>(piece);
-	if (ptr != nullptr) {
-		return true;
-	}
-	return false;
-}
-bool ChessBoard::isRook(Piece* piece) {
-	auto ptr = dynamic_cast<Rook*>(piece);
-	if (ptr != nullptr) {
-		return true;
-	}
-	return false; 
-}
 
 void ChessBoard::capturePiece(shared_ptr<Piece> piece) {
 	if (piece != nullptr) {
@@ -154,6 +136,13 @@ void ChessBoard::capturePiece(shared_ptr<Piece> piece) {
 	/*for (auto&& elem : pieces) {
 		cout << elem->getSymbol() << elem->getPosition().first << " " << elem->getPosition().second << endl;
 	}*/
+}
+bool ChessBoard::isKing(Piece* piece) {
+	auto ptr = dynamic_cast<King*>(piece);
+	if (ptr != nullptr) {
+		return true;
+	}
+	return false;
 }
 
 bool ChessBoard::isCheckMate(std::shared_ptr<Piece> piece) {
