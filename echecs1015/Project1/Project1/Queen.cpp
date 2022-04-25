@@ -9,8 +9,5 @@ Queen::Queen(std::string color) {
 	symbol = 'Q';
 	
 }
-bool Queen::validMove(char  x, int y) {
-	return true;
 
-};
 

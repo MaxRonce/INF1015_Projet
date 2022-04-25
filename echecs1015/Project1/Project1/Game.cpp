@@ -31,7 +31,7 @@ std::shared_ptr<Piece> Game::userChoosePiece() {
 	cin >> x >> y;
 	auto piece = chessBoard_->findPiece(x, y);
 	while (piece == nullptr) {
-		cout << "\nInvalid Piece, Please Insert Valid Move : \n";
+		cout << "\nInvalid Piece, Please Insert Valid Piece : \n";
 		cin >> x >> y;
 		piece = chessBoard_->findPiece(x, y);
 	}
@@ -43,11 +43,25 @@ void Game::processEvent(shared_ptr<Piece> piece) {
 	int y = 0;
 	cout << "\nYour Next Move : \n";
 	cin >> x >> y;
-	while (!piece->validMove(x, y)) {
+	std::pair<int, int> destination;
+	auto attackedPiece = chessBoard_->findPiece(x, y);
+	if (attackedPiece!= nullptr) {
+		destination = {attackedPiece->getPosition().first, attackedPiece->getPosition().second};
+	}
+	else {
+		destination = { x, y };
+	}
+	while (!chessBoard_->isValidMove(piece, destination)) {
 		cout << "\nInvalid Move, Please Insert Valid Move : \n";
 		cin >> x >> y;
+		attackedPiece = chessBoard_->findPiece(x, y);
+		if (attackedPiece != nullptr) {
+			destination = { attackedPiece->getPosition().first, attackedPiece->getPosition().second };
+		}
+		else {
+			destination = { x, y };
+		}
 	}
-	auto attackedPiece = chessBoard_->findPiece(x, y);
 	chessBoard_->capturePiece(attackedPiece);
 	piece->move(x, y);
 	if (chessBoard_->isCheckMate(attackedPiece)){
