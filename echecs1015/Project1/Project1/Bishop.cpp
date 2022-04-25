@@ -4,6 +4,6 @@
 
 Bishop::Bishop(std::string color) {
 	color_ = color;
-	symbol = 'B';
+	symbol_ = 'B';
 }
 

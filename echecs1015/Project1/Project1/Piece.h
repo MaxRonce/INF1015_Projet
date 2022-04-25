@@ -18,8 +18,8 @@ public:
 	void setPreviousPosition();
 	virtual ~Piece() =  default;
 protected:
-	std::pair<int, int> position;
-	std::pair<int, int> previousPosition;
-	char symbol = 'W';
+	std::pair<int, int> position_;
+	std::pair<int, int> previousPosition_;
+	char symbol_ = 'W';
 	std::string color_;
 };

@@ -12,7 +12,7 @@ void Game::start() {
 void Game::gameGUI() {
 	try {
 		std::cout << "Welcome Player, To Chess Game\n";
-		while (!end) {
+		while (!end_) {
 			chessBoard_->show();
 			auto piece = userChoosePiece();
 			processEvent(piece);
@@ -49,7 +49,7 @@ void Game::processEvent(shared_ptr<Piece> piece) {
 		destination = {attackedPiece->getPosition().first, attackedPiece->getPosition().second};
 	}
 	else {
-		destination = { x, y };
+		destination = { chessBoard_->charToInt(x), y};
 	}
 	while (!chessBoard_->isValidMove(piece, destination)) {
 		cout << "\nInvalid Move, Please Insert Valid Move : \n";
@@ -65,6 +65,6 @@ void Game::processEvent(shared_ptr<Piece> piece) {
 	chessBoard_->capturePiece(attackedPiece);
 	piece->move(x, y);
 	if (chessBoard_->isCheckMate(attackedPiece)){
-		this->end = true;
+		this->end_ = true;
 	}
 }

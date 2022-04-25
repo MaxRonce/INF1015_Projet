@@ -5,21 +5,21 @@ Piece::Piece(std::string color) {
 	color_ = color;
 };
 std::pair<int, int> Piece::getPosition() const {
-	return position;
+	return position_;
 };
 void Piece::move(char x, int y) {
-	previousPosition = position;
+	previousPosition_ = position_;
 	auto coordonnees = map.find(x);
-	position.first = coordonnees->second;
-	position.second = y;
+	position_.first = coordonnees->second;
+	position_.second = y;
 }
 
 
 std::pair<int, int>Piece::getPreviousPosition() const {
-	return previousPosition;
+	return previousPosition_;
 };
 char Piece::getSymbol() const {
-	return symbol;
+	return symbol_;
 };
 void Piece::setColor(std::string newColor) {
 	color_ = newColor;
@@ -28,5 +28,5 @@ std::string Piece::getColor() const {
 	return color_;
 }
 void Piece::setPreviousPosition() {
-	previousPosition = getPosition();
+	previousPosition_ = getPosition();
 };

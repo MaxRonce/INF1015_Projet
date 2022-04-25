@@ -6,7 +6,7 @@ using namespace std;
 
 Rook::Rook(std::string color) {
 	color_ = color;
-	symbol = 'R';
+	symbol_ = 'R';
 }
 
 

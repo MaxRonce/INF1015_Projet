@@ -9,7 +9,7 @@ public:
 
 private:
 
-	static int inline compteurInstance;
+	static int inline compteurInstance_;
 
 
 };

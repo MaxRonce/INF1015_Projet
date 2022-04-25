@@ -8,18 +8,7 @@
 #include <iostream>
 
 ChessBoard::ChessBoard() {
-	char board2[8][8] = {
-		//  H    G    F    E    D    C    B    A 
-		 { '0', '0', '0', '0', '0', '0', '0', '0',},//1
-		 { '0', '0', '0', '0', '0', '0', '0', '0' },//2
-		 { '0', '0', '0', '0', '0', '0', '0', '0' },//3
-		 { '0', '0', '0', '0', '0', '0', '0', '0' },//4
-		 { '0', '0', '0', '0', '0', '0', '0', '0' },//5
-		 { '0', '0', '0', '0', '0', '0', '0', '0' },//6
-		 { '0', '0', '0', '0', '0', '0', '0', '0' },//7
-		 { '0', '0', '0', '0', '0', '0', '0', '0' },//8
-	};
-	initialPositions = {
+	initialPositions_ = {
 		{'E', 1}, {'E', 8 },{'D', 1}, {'D', 8},{'H', 1}, 
 		{'H', 8 },{'A', 1}, {'A', 8 },{'F', 1}, {'F', 8 },
 		{'C', 1}, {'C', 8 },{'G', 1}, {'G', 8 },{'B', 1}, 
@@ -31,39 +20,43 @@ ChessBoard::ChessBoard() {
 
 	for (int i = 0; i < 8; ++i) {
 		for (int j = 0; j < 8; ++j) {
-			board[i][j] = board2[i][j];
+			board[i][j] = '0';
 		}
 	}
 	createPieces();
 	initialisation();
 
-};
+}
 
-void ChessBoard::createPieces() {
-	pieces.push_back(std::make_shared<King>(King("White")));
-	pieces.push_back(std::make_shared<King>(King("Black")));
-	pieces.push_back(std::make_shared<Queen>(Queen("White")));
-	pieces.push_back(std::make_shared<Queen>(Queen("Black")));
+namespace piecesPair {
 	int pairRook = 2;
 	int pairBishop = 2;
 	int pairKnight = 2;
 	int pairPawn = 8;
+}
+
+void ChessBoard::createPieces() {
+	using namespace piecesPair;
+	pieces_.push_back(std::make_shared<King>(King("White")));
+	pieces_.push_back(std::make_shared<King>(King("Black")));
+	pieces_.push_back(std::make_shared<Queen>(Queen("White")));
+	pieces_.push_back(std::make_shared<Queen>(Queen("Black")));
 	for (int i = 0; i < pairRook; ++i) {
-		pieces.push_back(std::make_shared<Rook>(Rook("White")));
-		pieces.push_back(std::make_shared<Rook>(Rook("Black")));
+		pieces_.push_back(std::make_shared<Rook>(Rook("White")));
+		pieces_.push_back(std::make_shared<Rook>(Rook("Black")));
 	}
 	for (int i = 0; i < pairBishop; ++i) {
-		pieces.push_back(std::make_shared<Bishop>(Bishop("White")));
-		pieces.push_back(std::make_shared<Bishop>(Bishop("Black")));
+		pieces_.push_back(std::make_shared<Bishop>(Bishop("White")));
+		pieces_.push_back(std::make_shared<Bishop>(Bishop("Black")));
 	}
 	for (int i = 0; i < pairKnight; ++i) {
-		pieces.push_back(std::make_shared<Knight>(Knight("White")));
-		pieces.push_back(std::make_shared<Knight>(Knight("Black")));
+		pieces_.push_back(std::make_shared<Knight>(Knight("White")));
+		pieces_.push_back(std::make_shared<Knight>(Knight("Black")));
 	}
 
 	for (int i = 0; i < pairPawn; ++i) {
-		pieces.push_back(std::make_shared<Pawn>(Pawn("White")));
-		pieces.push_back(std::make_shared<Pawn>(Pawn("Black")));
+		pieces_.push_back(std::make_shared<Pawn>(Pawn("White")));
+		pieces_.push_back(std::make_shared<Pawn>(Pawn("Black")));
 	}
 
 }
@@ -78,30 +71,30 @@ void ChessBoard::show() {
 		}
 		std::cout << "\n";
 	}
-};
+}
 
 void ChessBoard::initialisation() {
-	for (int i = 0; i < pieces.size(); ++i) {
-		pieces[i]->move(initialPositions[i].first, initialPositions[i].second);
-		pieces[i]->setPreviousPosition();
+	for (int i = 0; i < pieces_.size(); ++i) {
+		pieces_[i]->move(initialPositions_[i].first, initialPositions_[i].second);
+		pieces_[i]->setPreviousPosition();
 	}
-};
+}
 
 
 void ChessBoard::modifyPosition(Piece& piece) {
 	board[piece.getPreviousPosition().second - 1][piece.getPreviousPosition().first - 1] = '0';
 	board[piece.getPosition().second - 1][piece.getPosition().first - 1] = piece.getSymbol();
-};
+}
 
 //synchronise() is used to update the board each time we change a piece's position, it updates the printed board
 void ChessBoard::synchronise() { 
-	for (std::shared_ptr<Piece> i : pieces) {
+	for (std::shared_ptr<Piece> i : pieces_) {
 		modifyPosition(*i.get());
 	}
-};
+}
 
 std::shared_ptr<Piece> ChessBoard::findPiece(char x, int y)  const{
-	for (auto&& elem : pieces) {
+	for (auto&& elem : pieces_) {
 		if (elem->getPosition().first == elem->map.find(x)->second && elem->getPosition().second == y) {
 			return elem;
 		}
@@ -110,9 +103,9 @@ std::shared_ptr<Piece> ChessBoard::findPiece(char x, int y)  const{
 }
 
 void ChessBoard::deletePiece(std::shared_ptr<Piece> piece) {
-	for (int i = 0; i < pieces.size(); ++i) {
-		if (pieces[i] == piece) {
-			pieces.erase(pieces.begin() + i);
+	for (int i = 0; i < pieces_.size(); ++i) {
+		if (pieces_[i] == piece) {
+			pieces_.erase(pieces_.begin() + i);
 		}
 	}
 }
@@ -128,19 +121,59 @@ bool ChessBoard::caseIsOccupied(std::shared_ptr<Piece> piece)
 
 void ChessBoard::capturePiece(std::shared_ptr<Piece>& piece) {
 	if (piece != nullptr) {
-		capturedPieces.push_back(pieces[0]);
+		capturedPieces_.push_back(pieces_[0]);
 		deletePiece(piece);
 	}
 }
-bool ChessBoard::isKing(Piece* piece)  {
-	auto ptr = dynamic_cast<King*>(piece);
-	if (ptr != nullptr) {
-		return true;
+
+
+namespace isPiece {
+	bool isQueen(Piece* piece)  {
+		auto ptr = dynamic_cast<Queen*>(piece);
+		if (ptr != nullptr) {
+			return true;
+		}
+		return false;
+	};
+	bool isRook(Piece* piece) {
+		auto ptr = dynamic_cast<Rook*>(piece);
+		if (ptr != nullptr) {
+			return true;
+		}
+		return false;
 	}
-	return false;
+	bool isPawn(Piece* piece) {
+		auto ptr = dynamic_cast<Pawn*>(piece);
+		if (ptr != nullptr) {
+			return true;
+		}
+		return false;
+	}
+	bool isKnight(Piece* piece) {
+		auto ptr = dynamic_cast<Knight*>(piece);
+		if (ptr != nullptr) {
+			return true;
+		}
+		return false;
+	}
+	bool isBishop(Piece* piece) {
+		auto ptr = dynamic_cast<Bishop*>(piece);
+		if (ptr != nullptr) {
+			return true;
+		}
+		return false;
+	}
+	bool isKing(Piece* piece) {
+		auto ptr = dynamic_cast<King*>(piece);
+		if (ptr != nullptr) {
+			return true;
+		}
+		return false;
+	}
 }
 
 bool ChessBoard::isCheckMate(std::shared_ptr<Piece> piece) {
+	using namespace isPiece;
 	if (isKing(piece.get())) {
 		return true;
 
@@ -148,21 +181,39 @@ bool ChessBoard::isCheckMate(std::shared_ptr<Piece> piece) {
 	return false;
 }
 
-bool ChessBoard::isHorizontalMove(std::shared_ptr<Piece> pieceToMove, std::pair<int, int> destination) const {
-	return pieceToMove->getPosition().second == destination.second;
+namespace pieceMovements {
+	bool isHorizontalMove(std::shared_ptr<Piece> pieceToMove, std::pair<int, int> destination) {
+		return pieceToMove->getPosition().second == destination.second;
+	}
+
+	bool isVerticalMove(std::shared_ptr<Piece> pieceToMove, std::pair<int, int> destination) {
+		return pieceToMove->getPosition().first == destination.first;
+	}
+	bool isDiagonalMove(std::shared_ptr<Piece> pieceToMove, std::pair<int, int> destination) {
+		int verticalDifference = destination.second - pieceToMove->getPosition().second;
+		int horizontalDifference = destination.first - pieceToMove->getPosition().first;
+
+		return abs(verticalDifference) == abs(horizontalDifference);
+	}
+	bool isKnightMove(std::shared_ptr<Piece> pieceToMove, std::pair<int, int> destination) {
+		int verticalDifference = abs(destination.second - pieceToMove->getPosition().second);
+		int horizontalDifference = abs(destination.first - pieceToMove->getPosition().first);
+
+		if ((verticalDifference == 2 && horizontalDifference == 1) || (verticalDifference == 1 && horizontalDifference == 2))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
+	}
 }
 
-bool ChessBoard::isVerticalMove(std::shared_ptr<Piece> pieceToMove, std::pair<int, int> destination)  const {
-	return pieceToMove->getPosition().first == destination.first;
-}
-bool ChessBoard::isDiagonalMove(std::shared_ptr<Piece> pieceToMove, std::pair<int, int> destination)  const {
-	int verticalDifference = destination.second - pieceToMove->getPosition().second;
-	int horizontalDifference = destination.first-pieceToMove->getPosition().first;
-
-	return abs(verticalDifference) == abs(horizontalDifference);
-}
 
 int ChessBoard::moveStep(std::shared_ptr<Piece> pieceToMove, std::pair<int, int> destination) const {
+	using namespace pieceMovements;
 	if (isVerticalMove(pieceToMove, destination))
 	{
 		return abs(destination.second - pieceToMove->getPosition().second);
@@ -183,57 +234,11 @@ int ChessBoard::moveStep(std::shared_ptr<Piece> pieceToMove, std::pair<int, int>
 	}
 }
 
-bool ChessBoard::isKnightMove(std::shared_ptr<Piece> pieceToMove, std::pair<int, int> destination) const {
-	int verticalDifference = abs(destination.second - pieceToMove->getPosition().second);
-	int horizontalDifference = abs(destination.first - pieceToMove->getPosition().first);
 
-	if ((verticalDifference == 2 && horizontalDifference == 1) || (verticalDifference == 1 && horizontalDifference == 2))
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-
-}
-bool ChessBoard::isQueen(Piece* piece)  const {
-	auto ptr = dynamic_cast<Queen*>(piece);
-	if (ptr != nullptr) {
-		return true;
-	}
-	return false;
-}
-bool ChessBoard::isRook(Piece* piece)   const {
-	auto ptr = dynamic_cast<Rook*>(piece);
-	if (ptr != nullptr) {
-		return true;
-	}
-	return false;
-}
-bool ChessBoard::isPawn(Piece* piece)  const {
-	auto ptr = dynamic_cast<Pawn*>(piece);
-	if (ptr != nullptr) {
-		return true;
-	}
-	return false;
-}
-bool ChessBoard::isKnight(Piece* piece) const {
-	auto ptr = dynamic_cast<Knight*>(piece);
-	if (ptr != nullptr) {
-		return true;
-	}
-	return false;
-}
-bool ChessBoard::isBishop(Piece* piece)  const {
-	auto ptr = dynamic_cast<Bishop*>(piece);
-	if (ptr != nullptr) {
-		return true;
-	}
-	return false;
-}
 
 bool ChessBoard::isValidMove(std::shared_ptr<Piece> pieceToMove, std::pair<int, int> destination)  {
+	using namespace isPiece;
+	using namespace pieceMovements;
 	bool validKingMove = isDiagonalMove(pieceToMove, destination)
 		|| isHorizontalMove(pieceToMove, destination)
 		|| isVerticalMove(pieceToMove, destination);
@@ -244,7 +249,7 @@ bool ChessBoard::isValidMove(std::shared_ptr<Piece> pieceToMove, std::pair<int, 
 		}
 	}
 	if (isQueen(pieceToMove.get())) {
-			return true;
+		return true;
 	}
 	if (isRook(pieceToMove.get())) {
 		if (isHorizontalMove(pieceToMove, destination) || isVerticalMove(pieceToMove, destination)) {
@@ -258,7 +263,11 @@ bool ChessBoard::isValidMove(std::shared_ptr<Piece> pieceToMove, std::pair<int, 
 	}
 	if (isKnight(pieceToMove.get())) {
 		return isKnightMove(pieceToMove, destination);
-		
+
 	}
 	return false;
+}
+
+int ChessBoard::charToInt(char coord) const {
+	return map.find(coord)->second;
 }

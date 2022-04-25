@@ -7,14 +7,14 @@
 King::King(std::string color)
 {
 	color_ = color;
-	symbol = 'K';
-	if (compteurInstance > 2) {
+	symbol_ = 'K';
+	if (compteurInstance_ > 2) {
 		throw InstancesKingException("More than 2 Instances of KING");
 	}
-	++compteurInstance;
+	++compteurInstance_;
 };
 
-King::~King() { --compteurInstance; };
+King::~King() { --compteurInstance_; };
 
 
 

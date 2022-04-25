@@ -2,7 +2,7 @@
 
 Pawn::Pawn(std::string color) {
 	color_ = color;
-	symbol = 'P';
+	symbol_ = 'P';
 }
 
 

@@ -6,7 +6,7 @@ using namespace std;
 
 Queen::Queen(std::string color) {
 	color_ = color;
-	symbol = 'Q';
+	symbol_ = 'Q';
 	
 }
 
