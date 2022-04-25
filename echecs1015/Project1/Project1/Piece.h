@@ -15,7 +15,6 @@ public:
 	char getSymbol() const;
 	std::string getColor() const;
 	void setColor(std::string newColor);
-	void setPreviousPosition();
 	virtual ~Piece() =  default;
 
 protected:
