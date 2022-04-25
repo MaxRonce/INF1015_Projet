@@ -4,6 +4,6 @@
 class Bishop: public Piece
 {
 	public:
-	Bishop(std::string color);
+	Bishop(std::string color, char x, int y);
 };
 

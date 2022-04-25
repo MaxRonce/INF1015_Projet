@@ -23,8 +23,6 @@
 		void synchronise(); //Has to be implemented in GUIclass
 		std::vector<std::shared_ptr<Piece>> pieces_;
 		std::vector<std::shared_ptr<Piece>> capturedPieces_;
-		void initialisation();
 		char board_[8][8] = {}; //[colonne] [ligne]
-		std::vector<std::pair<char, int>> initialPositions_;
 
 	};

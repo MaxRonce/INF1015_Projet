@@ -32,6 +32,9 @@ void Game::gameGUI() {
 	using namespace userUI;
 	try {
 		std::cout << "Welcome Player, To Chess Game\n";
+		std::cout << "Please Insert Y Movement Then X Movement\n";
+		std::cout << "Example : A2\n";
+		std::cout << "Happy Game :)!\n";
 		while (!end_)
 		{
 			chessBoard_->show();

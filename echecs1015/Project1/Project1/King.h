@@ -4,7 +4,7 @@
 
 class King : public Piece {
 public:
-	King(std::string color);
+	King(std::string color, char x, int y);
 	~King();
 
 private:

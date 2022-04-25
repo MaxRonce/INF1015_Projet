@@ -1,8 +1,12 @@
 #pragma once
 #include "Piece.h"
 
-Piece::Piece(std::string color) {
+Piece::Piece(std::string color, char x, int y) {
 	color_ = color;
+	position_.first = map.find(x)->second;
+	position_.second = y;
+	previousPosition_ = position_;
+
 }
 
 std::pair<int, int> Piece::getPosition() const {

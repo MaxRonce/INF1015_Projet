@@ -16,59 +16,50 @@ ChessBoard::ChessBoard() {
 			board_[i][j] = '0';
 		}
 	}
-
-	initialPositions_ = {
-
-		{'E', 1}, {'E', 8 },{'D', 1}, {'D', 8},{'H', 1},
-		{'H', 8 },{'A', 1}, {'A', 8 },{'F', 1}, {'F', 8 },
-		{'C', 1}, {'C', 8 },{'G', 1}, {'G', 8 },{'B', 1},
-		{'B', 8 },{'A', 2}, {'A', 7 },{'B', 2}, {'B', 7 },
-		{'C', 2}, {'C', 7 },{'D', 2}, {'D', 7 },{'E', 2},
-		{'E', 7 },{'F', 2},{'F', 7 },{'G', 2}, {'G', 7 },
-		{'H', 2}, {'H',7 }
-
-	};
 	createPieces();
-	initialisation();
-
-}
-
-namespace piecesPair {
-
-	int pairRook = 2;
-	int pairBishop = 2;
-	int pairKnight = 2;
-	int pairPawn = 8;
 
 }
 
 void ChessBoard::createPieces() {
-	using namespace piecesPair;
-	pieces_.push_back(std::make_shared<King>(King("White")));
-	pieces_.push_back(std::make_shared<King>(King("Black")));
-	pieces_.push_back(std::make_shared<Queen>(Queen("White")));
-	pieces_.push_back(std::make_shared<Queen>(Queen("Black")));
-
-	for (int i = 0; i < pairRook; ++i) 
-	{
-		pieces_.push_back(std::make_shared<Rook>(Rook("White")));
-		pieces_.push_back(std::make_shared<Rook>(Rook("Black")));
-	}
-	for (int i = 0; i < pairBishop; ++i)
-	{
-		pieces_.push_back(std::make_shared<Bishop>(Bishop("White")));
-		pieces_.push_back(std::make_shared<Bishop>(Bishop("Black")));
-	}
-	for (int i = 0; i < pairKnight; ++i) 
-	{
-		pieces_.push_back(std::make_shared<Knight>(Knight("White")));
-		pieces_.push_back(std::make_shared<Knight>(Knight("Black")));
-	}
-	for (int i = 0; i < pairPawn; ++i) 
-	{
-		pieces_.push_back(std::make_shared<Pawn>(Pawn("White")));
-		pieces_.push_back(std::make_shared<Pawn>(Pawn("Black")));
-	}
+	//King creation
+	pieces_.push_back(std::make_shared<King>(King("White",'E', 1)));
+	pieces_.push_back(std::make_shared<King>(King("Black",'E', 8)));
+	//Queen creation
+	pieces_.push_back(std::make_shared<Queen>(Queen("White", 'D', 1)));
+	pieces_.push_back(std::make_shared<Queen>(Queen("Black", 'D', 8)));
+	//Rook creation
+	pieces_.push_back(std::make_shared<Rook>(Rook("White", 'H', 1)));
+	pieces_.push_back(std::make_shared<Rook>(Rook("Black", 'H', 8)));
+	pieces_.push_back(std::make_shared<Rook>(Rook("White", 'A', 1)));
+	pieces_.push_back(std::make_shared<Rook>(Rook("Black", 'A', 8)));
+	//Bishop creation
+	pieces_.push_back(std::make_shared<Bishop>(Bishop("White", 'F', 1)));
+	pieces_.push_back(std::make_shared<Bishop>(Bishop("Black", 'F', 8)));
+	pieces_.push_back(std::make_shared<Bishop>(Bishop("White", 'C', 1)));
+	pieces_.push_back(std::make_shared<Bishop>(Bishop("Black", 'C', 8)));
+	//Knight creation
+	pieces_.push_back(std::make_shared<Knight>(Knight("White", 'G', 1)));
+	pieces_.push_back(std::make_shared<Knight>(Knight("Black", 'G', 8)));
+	pieces_.push_back(std::make_shared<Knight>(Knight("White", 'B', 1)));
+	pieces_.push_back(std::make_shared<Knight>(Knight("Black", 'B', 8)));
+	//Pawn creation
+	pieces_.push_back(std::make_shared<Pawn>(Pawn("White", 'A', 2)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn("Black", 'A', 7)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn("White",'B', 2)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn("Black", 'B', 7)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn("White", 'C', 2)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn("Black", 'C', 7)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn("White", 'D', 2)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn("Black", 'D', 7)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn("White", 'E', 2)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn("Black", 'E', 7)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn("White", 'F', 2)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn("Black", 'F', 7)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn("White",'G', 2)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn("Black", 'G', 7)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn("White", 'H', 2)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn("Black", 'H', 7)));
+	
 }
 
 void ChessBoard::show() {
@@ -82,14 +73,6 @@ void ChessBoard::show() {
 			std::cout << board_[i][j] << " ";
 		}
 		std::cout << "\n";
-	}
-}
-
-void ChessBoard::initialisation() {
-	for (int i = 0; i < pieces_.size(); ++i) 
-	{
-		pieces_[i]->move(initialPositions_[i].first, initialPositions_[i].second);
-		pieces_[i]->setPreviousPosition();
 	}
 }
 
@@ -317,3 +300,4 @@ bool ChessBoard::isValidMove(std::shared_ptr<Piece> pieceToMove, std::pair<int, 
 int ChessBoard::charToInt(char coord) const {
 	return map.find(coord)->second;
 }
+

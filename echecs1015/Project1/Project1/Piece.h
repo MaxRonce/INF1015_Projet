@@ -7,7 +7,7 @@
 class Piece {
 public:
 	Piece() = default;
-	Piece(std::string color);
+	Piece(std::string color, char x, int y);
 	void move(char x, int y);
 	std::map<char, int> map{ {'A', 8}, {'B', 7},{'C', 6},{'D', 5},{'E', 4}, {'F', 3}, {'G', 2},{'H', 1} };
 	std::pair<int, int> getPosition() const;
