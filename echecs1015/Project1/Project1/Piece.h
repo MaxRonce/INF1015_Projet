@@ -17,6 +17,7 @@ public:
 	void setColor(std::string newColor);
 	void setPreviousPosition();
 	virtual ~Piece() =  default;
+
 protected:
 	std::pair<int, int> position_;
 	std::pair<int, int> previousPosition_;

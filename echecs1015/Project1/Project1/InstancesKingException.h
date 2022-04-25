@@ -2,7 +2,6 @@
 #include <stdexcept>
 
 
-
 class InstancesKingException : public std::logic_error
 {
 public:

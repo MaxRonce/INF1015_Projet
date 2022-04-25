@@ -8,7 +8,6 @@ public:
 	~King();
 
 private:
-
 	static int inline compteurInstance_;
 
 

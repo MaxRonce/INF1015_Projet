@@ -8,7 +8,8 @@ King::King(std::string color)
 {
 	color_ = color;
 	symbol_ = 'K';
-	if (compteurInstance_ > 2) {
+	if (compteurInstance_ > 2) 
+	{
 		throw InstancesKingException("More than 2 Instances of KING");
 	}
 	++compteurInstance_;

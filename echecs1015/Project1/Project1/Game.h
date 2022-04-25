@@ -9,6 +9,7 @@ class Game {
 public: 
 	Game();
 	void start();
+
 private:
 	void gameGUI();
 	void processEvent(std::shared_ptr<Piece> piece);
