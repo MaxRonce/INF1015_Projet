@@ -11,7 +11,6 @@ public:
 	void start();
 private:
 	void gameGUI();
-	std::shared_ptr<Piece> userChoosePiece();
 	void processEvent(std::shared_ptr<Piece> piece);
 	ChessBoard* chessBoard_;
 	bool end_ = false;
