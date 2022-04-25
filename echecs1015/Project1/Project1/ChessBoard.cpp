@@ -8,6 +8,11 @@
 #include <iostream>
 
 ChessBoard::ChessBoard() {
+	for (int i = 0; i < 8; ++i) {
+		for (int j = 0; j < 8; ++j) {
+			board_[i][j] = '0';
+		}
+	}
 	initialPositions_ = {
 		{'E', 1}, {'E', 8 },{'D', 1}, {'D', 8},{'H', 1}, 
 		{'H', 8 },{'A', 1}, {'A', 8 },{'F', 1}, {'F', 8 },
@@ -18,11 +23,6 @@ ChessBoard::ChessBoard() {
 		{'H', 2}, {'H',7 }
 	};
 
-	for (int i = 0; i < 8; ++i) {
-		for (int j = 0; j < 8; ++j) {
-			board[i][j] = '0';
-		}
-	}
 	createPieces();
 	initialisation();
 
@@ -67,7 +67,7 @@ void ChessBoard::show() {
 	for (int i = 0; i < 8; ++i) {
 		std::cout << i + 1 << "|";
 		for (int j = 0; j < 8; ++j) {
-			std::cout << board[i][j] << " ";
+			std::cout << board_[i][j] << " ";
 		}
 		std::cout << "\n";
 	}
@@ -82,8 +82,8 @@ void ChessBoard::initialisation() {
 
 
 void ChessBoard::modifyPosition(Piece& piece) {
-	board[piece.getPreviousPosition().second - 1][piece.getPreviousPosition().first - 1] = '0';
-	board[piece.getPosition().second - 1][piece.getPosition().first - 1] = piece.getSymbol();
+	board_[piece.getPreviousPosition().second - 1][piece.getPreviousPosition().first - 1] = '0';
+	board_[piece.getPosition().second - 1][piece.getPosition().first - 1] = piece.getSymbol();
 }
 
 //synchronise() is used to update the board each time we change a piece's position, it updates the printed board
@@ -112,7 +112,7 @@ void ChessBoard::deletePiece(std::shared_ptr<Piece> piece) {
 
 bool ChessBoard::caseIsOccupied(std::shared_ptr<Piece> piece) 
 {
-	if (board[piece->getPosition().second][piece->getPosition().first] != '0') {
+	if (board_[piece->getPosition().second][piece->getPosition().first] != '0') {
 		return true;
 	}
 	return false;
