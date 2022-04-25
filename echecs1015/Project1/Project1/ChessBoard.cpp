@@ -110,9 +110,9 @@ void ChessBoard::deletePiece(std::shared_ptr<Piece> piece) {
 	}
 }
 
-bool ChessBoard::caseIsOccupied(std::shared_ptr<Piece> piece)
+bool ChessBoard::caseIsOccupied(std::pair<int, int> destination)
 {
-	if (board_[piece->getPosition().second][piece->getPosition().first] != '0')
+	if (board_[destination.second][destination.first] != '0')
 	{
 		return true;
 	}
@@ -267,10 +267,7 @@ bool ChessBoard::isValidMove(std::shared_ptr<Piece> pieceToMove, std::pair<int, 
 		|| isVerticalMove(pieceToMove, destination);
 	if (isKing(pieceToMove.get())) 
 	{
-		if (validKingMove && (moveStep(pieceToMove, destination) == 1))
-		{
-			return true;
-		}
+		return validKingMove && (moveStep(pieceToMove, destination) == 1);
 	}
 	else if (isQueen(pieceToMove.get())) 
 	{
@@ -278,21 +275,33 @@ bool ChessBoard::isValidMove(std::shared_ptr<Piece> pieceToMove, std::pair<int, 
 	}
 	else if (isRook(pieceToMove.get())) 
 	{
-		if (isHorizontalMove(pieceToMove, destination) || isVerticalMove(pieceToMove, destination))
-		{
-			return true;
-		}
+		return isHorizontalMove(pieceToMove, destination) || isVerticalMove(pieceToMove, destination);
 	}
 	else if (isBishop(pieceToMove.get())) 
 	{
-		if (isDiagonalMove(pieceToMove, destination)) 
-		{
-			return true;
-		}
+		return isDiagonalMove(pieceToMove, destination);
 	}
 	else if (isKnight(pieceToMove.get())) 
 	{
 		return isKnightMove(pieceToMove, destination);
+	}
+	else if (isPawn(pieceToMove.get()))
+	{
+		//The Only Time where the previousPosition equals currentPosition is in the beginning
+		bool beginning = (pieceToMove->getPosition() == pieceToMove->getPreviousPosition());
+		if (beginning) {
+			return isVerticalMove(pieceToMove, destination) && ((moveStep(pieceToMove, destination) == 2 || moveStep(pieceToMove, destination) == 1));
+		}
+		else {
+			if (caseIsOccupied(destination)) 
+			{
+				return isDiagonalMove(pieceToMove, destination) && (moveStep(pieceToMove, destination) == 1);
+			}
+			else 
+			{
+				return isVerticalMove(pieceToMove, destination) && (moveStep(pieceToMove, destination) == 1);
+			}
+		}
 	}
 	return false;
 }

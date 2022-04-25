@@ -16,7 +16,7 @@
 
 	private:
 		std::map<char, int> map{ {'A', 8}, {'B', 7},{'C', 6},{'D', 5},{'E', 4}, {'F', 3}, {'G', 2},{'H', 1} };
-		bool caseIsOccupied(std::shared_ptr<Piece> piece);
+		bool caseIsOccupied(std::pair<int, int> destination);
 		void createPieces();
 		void deletePiece(std::shared_ptr<Piece> piece);
 		void modifyPosition(Piece& piece);
