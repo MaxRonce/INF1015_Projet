@@ -267,30 +267,32 @@ bool ChessBoard::isValidMove(std::shared_ptr<Piece> pieceToMove, std::pair<int, 
 	bool validKingMove = isDiagonalMove(pieceToMove, destination)
 		|| isHorizontalMove(pieceToMove, destination)
 		|| isVerticalMove(pieceToMove, destination);
-	if (isKing(pieceToMove.get())) 
-	{
-		return validKingMove && (moveStep(pieceToMove, destination) == 1) && !caseIsOccupiedSameColor(pieceToMove, destination);
+	//The Only Time where the previousPosition equals currentPosition is in the beginning
+	bool beginning = (pieceToMove->getPosition() == pieceToMove->getPreviousPosition());
+	if (!beginning) {
+		if (isKing(pieceToMove.get())) 
+		{
+			return validKingMove && (moveStep(pieceToMove, destination) == 1) && !caseIsOccupiedSameColor(pieceToMove, destination);
+		}
+		else if (isQueen(pieceToMove.get())) 
+		{
+			return true;
+		}
+		else if (isRook(pieceToMove.get())) 
+		{
+			return isHorizontalMove(pieceToMove, destination) || isVerticalMove(pieceToMove, destination) && !caseIsOccupiedSameColor(pieceToMove, destination);
+		}
+		else if (isBishop(pieceToMove.get())) 
+		{
+			return isDiagonalMove(pieceToMove, destination) && !caseIsOccupiedSameColor(pieceToMove, destination);
+		}
 	}
-	else if (isQueen(pieceToMove.get())) 
-	{
-		return true;
-	}
-	else if (isRook(pieceToMove.get())) 
-	{
-		return isHorizontalMove(pieceToMove, destination) || isVerticalMove(pieceToMove, destination) && !caseIsOccupiedSameColor(pieceToMove, destination);
-	}
-	else if (isBishop(pieceToMove.get())) 
-	{
-		return isDiagonalMove(pieceToMove, destination) && !caseIsOccupiedSameColor(pieceToMove, destination);
-	}
-	else if (isKnight(pieceToMove.get())) 
+	if (isKnight(pieceToMove.get()))
 	{
 		return isKnightMove(pieceToMove, destination) && !caseIsOccupiedSameColor(pieceToMove, destination);
 	}
 	else if (isPawn(pieceToMove.get()))
 	{
-		//The Only Time where the previousPosition equals currentPosition is in the beginning
-		bool beginning = (pieceToMove->getPosition() == pieceToMove->getPreviousPosition());
 		if (beginning) {
 			return isVerticalMove(pieceToMove, destination) && ((moveStep(pieceToMove, destination) == 2 || moveStep(pieceToMove, destination) == 1)) && !caseIsOccupiedSameColor(pieceToMove, destination);
 		}

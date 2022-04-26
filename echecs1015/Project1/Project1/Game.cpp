@@ -75,9 +75,7 @@ void Game::processEvent(std::shared_ptr<Piece> piece) {
 	destination = destionationCoord(chessBoard_, x, y);
 	while (!chessBoard_->isValidMove(piece, destination))
 	{
-		std::cout << "\nInvalid Move, Please Insert Valid Move : \n";
-		std::cin >> x >> y;
-		destination = destionationCoord(chessBoard_, x, y);
+		return ;
 	}
 	chessBoard_->capturePiece(attackedPiece);
 	piece->move(x, y);
