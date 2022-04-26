@@ -1,3 +1,10 @@
+/*
+* TP6 INF1015
+* \file  Knight.cpp
+* \author Nada Alami Chentoufi et Maxime Ronceray
+* \date   25 avril 2022
+* Créé le 20 avril 2022
+*/
 #include "Knight.h"
 
 Knight::Knight(std::string color, char x, int y) {

@@ -1,4 +1,10 @@
-#include "ChessBoard.h"
+/*
+* TP6 INF1015
+* \file   Game.hpp
+* \author Nada Alami Chentoufi et Maxime Ronceray
+* \date   25 avril 2022
+* Créé le 20 avril 2022
+*/#include "ChessBoard.h"
 #include "King.h"
 #include "Queen.h"
 #include "Rook.h"
