@@ -6,6 +6,7 @@
 #include "Knight.h"
 #include "Pawn.h"
 #include <iostream>
+#include <algorithm>
 
 ChessBoard::ChessBoard() {
 
@@ -112,7 +113,8 @@ void ChessBoard::deletePiece(std::shared_ptr<Piece> piece) {
 
 bool ChessBoard::caseIsOccupied(std::pair<int, int> destination)
 {
-	if (board_[destination.second][destination.first] != '0')
+	auto piece = findPiece(intToChar(destination.first), destination.second);
+	if (piece != nullptr)
 	{
 		return true;
 	}
@@ -267,7 +269,7 @@ bool ChessBoard::isValidMove(std::shared_ptr<Piece> pieceToMove, std::pair<int, 
 		|| isVerticalMove(pieceToMove, destination);
 	if (isKing(pieceToMove.get())) 
 	{
-		return validKingMove && (moveStep(pieceToMove, destination) == 1);
+		return validKingMove && (moveStep(pieceToMove, destination) == 1) && !caseIsOccupiedSameColor(pieceToMove, destination);
 	}
 	else if (isQueen(pieceToMove.get())) 
 	{
@@ -275,31 +277,31 @@ bool ChessBoard::isValidMove(std::shared_ptr<Piece> pieceToMove, std::pair<int, 
 	}
 	else if (isRook(pieceToMove.get())) 
 	{
-		return isHorizontalMove(pieceToMove, destination) || isVerticalMove(pieceToMove, destination);
+		return isHorizontalMove(pieceToMove, destination) || isVerticalMove(pieceToMove, destination) && !caseIsOccupiedSameColor(pieceToMove, destination);
 	}
 	else if (isBishop(pieceToMove.get())) 
 	{
-		return isDiagonalMove(pieceToMove, destination);
+		return isDiagonalMove(pieceToMove, destination) && !caseIsOccupiedSameColor(pieceToMove, destination);
 	}
 	else if (isKnight(pieceToMove.get())) 
 	{
-		return isKnightMove(pieceToMove, destination);
+		return isKnightMove(pieceToMove, destination) && !caseIsOccupiedSameColor(pieceToMove, destination);
 	}
 	else if (isPawn(pieceToMove.get()))
 	{
 		//The Only Time where the previousPosition equals currentPosition is in the beginning
 		bool beginning = (pieceToMove->getPosition() == pieceToMove->getPreviousPosition());
 		if (beginning) {
-			return isVerticalMove(pieceToMove, destination) && ((moveStep(pieceToMove, destination) == 2 || moveStep(pieceToMove, destination) == 1));
+			return isVerticalMove(pieceToMove, destination) && ((moveStep(pieceToMove, destination) == 2 || moveStep(pieceToMove, destination) == 1)) && !caseIsOccupiedSameColor(pieceToMove, destination);
 		}
 		else {
 			if (caseIsOccupied(destination)) 
 			{
-				return isDiagonalMove(pieceToMove, destination) && (moveStep(pieceToMove, destination) == 1);
+				return isDiagonalMove(pieceToMove, destination) && (moveStep(pieceToMove, destination) == 1) && !caseIsOccupiedSameColor(pieceToMove, destination);
 			}
 			else 
 			{
-				return isVerticalMove(pieceToMove, destination) && (moveStep(pieceToMove, destination) == 1);
+				return isVerticalMove(pieceToMove, destination) && (moveStep(pieceToMove, destination) == 1) && !caseIsOccupiedSameColor(pieceToMove, destination);
 			}
 		}
 	}
@@ -310,3 +312,25 @@ int ChessBoard::charToInt(char coord) const {
 	return map.find(coord)->second;
 }
 
+bool ChessBoard::caseIsOccupiedSameColor(std::shared_ptr<Piece> pieceToMove, std::pair<int, int> destination) {
+	auto piece = findPiece(intToChar(destination.first), destination.second);
+	if (piece!=nullptr && pieceToMove->getColor()==piece->getColor())
+	{
+		return true;
+	}
+
+	return false;
+}
+
+char ChessBoard::intToChar(int x) {
+	char foundKey = 0;
+	auto lambda = [&](const std::pair<char, int>& pair) {
+		return pair.second == x;
+	};
+	auto itr = std::find_if(std::begin(map), std::end(map), lambda);
+	if (itr != std::end(map))
+	{
+		foundKey = itr->first;
+	}
+	return foundKey;
+};
