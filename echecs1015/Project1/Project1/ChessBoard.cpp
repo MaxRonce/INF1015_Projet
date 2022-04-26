@@ -336,3 +336,7 @@ char ChessBoard::intToChar(int x) {
 	}
 	return foundKey;
 };
+
+void ChessBoard::addPiece(std::shared_ptr<Piece> piece) {
+	this->pieces_.push_back(piece);
+}
