@@ -10,5 +10,5 @@
 
 class Queen : public Piece {
 public:
-	Queen(std::string color,char x, int y);
+	Queen(Piece::Color color,char x, int y);
 };

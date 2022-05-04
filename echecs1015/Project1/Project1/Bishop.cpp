@@ -9,7 +9,7 @@
 #include "Bishop.h"
 
 
-Bishop::Bishop(std::string color, char x, int y) {
+Bishop::Bishop(Piece::Color color, char x, int y) {
 
 	color_ = color;
 	symbol_ = 'B';

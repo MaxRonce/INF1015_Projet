@@ -12,5 +12,5 @@
 class Pawn : public Piece
 {
 public:
-	Pawn(std::string color, char x, int y);
+	Pawn(Piece::Color color, char x, int y);
 };

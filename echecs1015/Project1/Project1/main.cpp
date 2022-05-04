@@ -1,7 +1,8 @@
-#include "Game.h"
-
+//#include "Game.h"
+#include "ChessBoard.h"
 
 int main() {
-	Game game;
-	game.start();
+	/*Game game;
+	game.start();*/
+	ChessBoard chessb;
 }

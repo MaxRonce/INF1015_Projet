@@ -8,7 +8,7 @@
 #pragma once
 #include "Piece.h"
 
-Piece::Piece(std::string color, char x, int y) {
+Piece::Piece(Color color, char x, int y) {
 	color_ = color;
 	position_.first = map.find(x)->second;
 	position_.second = y;
@@ -20,11 +20,10 @@ std::pair<int, int> Piece::getPosition() const {
 	return position_;
 }
 
-void Piece::move(char x, int y) {
+void Piece::move(std::pair<int, int> destination) {
 	previousPosition_ = position_;
-	auto coordonnees = map.find(x);
-	position_.first = coordonnees->second;
-	position_.second = y;
+	position_.first = destination.first;
+	position_.second = destination.second;
 }
 
 std::pair<int, int>Piece::getPreviousPosition() const {
@@ -34,10 +33,17 @@ std::pair<int, int>Piece::getPreviousPosition() const {
 char Piece::getSymbol() const {
 	return symbol_;
 };
-void Piece::setColor(std::string newColor) {
+void Piece::setColor(Color newColor) {
 	color_ = newColor;
 }
 
-std::string Piece::getColor() const {
+Piece::Color Piece::getColor() const {
 	return color_;
+}
+
+bool Piece::firstMove() {
+	if (position_ != previousPosition_) {
+		return false;
+	}
+	return true;
 }

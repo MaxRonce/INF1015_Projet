@@ -11,6 +11,6 @@
 class Bishop: public Piece
 {
 	public:
-	Bishop(std::string color, char x, int y);
+	Bishop(Piece::Color color, char x, int y);
 };
 

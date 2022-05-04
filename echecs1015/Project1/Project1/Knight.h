@@ -10,6 +10,6 @@
 class Knight : public Piece
 {
 public:
-	Knight(std::string color, char x, int y);
+	Knight(Piece::Color color, char x, int y);
 };
 

@@ -13,20 +13,22 @@
 
 class Piece {
 public:
+	enum class Color { WHITE, BLACK };
 	Piece() = default;
-	Piece(std::string color, char x, int y);
-	void move(char x, int y);
+	Piece(Color color, char x, int y);
+	void move(std::pair<int, int> destination);
 	std::map<char, int> map{ {'A', 8}, {'B', 7},{'C', 6},{'D', 5},{'E', 4}, {'F', 3}, {'G', 2},{'H', 1} };
 	std::pair<int, int> getPosition() const;
 	std::pair<int, int> getPreviousPosition() const;
 	char getSymbol() const;
-	std::string getColor() const;
-	void setColor(std::string newColor);
+	Color getColor() const;
+	void setColor(Color newColor);
 	virtual ~Piece() =  default;
+	bool firstMove();
 
 protected:
 	std::pair<int, int> position_;
 	std::pair<int, int> previousPosition_;
 	char symbol_ = 'W';
-	std::string color_;
+	Color color_;
 };

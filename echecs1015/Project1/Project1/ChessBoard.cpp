@@ -5,13 +5,9 @@
 * \date   25 avril 2022
 * Créé le 20 avril 2022
 */
+#pragma once
 #include "ChessBoard.h"
-#include "King.h"
-#include "Queen.h"
-#include "Rook.h"
-#include "Bishop.h"
-#include "Knight.h"
-#include "Pawn.h"
+ 
 #include <iostream>
 #include <algorithm>
 
@@ -30,43 +26,43 @@ ChessBoard::ChessBoard() {
 
 void ChessBoard::createPieces() {
 	//King creation
-	pieces_.push_back(std::make_shared<King>(King("White",'E', 1)));
-	pieces_.push_back(std::make_shared<King>(King("Black",'E', 8)));
+   pieces_.push_back(std::make_shared<King>(King(Piece::Color::WHITE,'E', 1)));
+	pieces_.push_back(std::make_shared<King>(King(Piece::Color::BLACK,'E', 8)));
 	//Queen creation
-	pieces_.push_back(std::make_shared<Queen>(Queen("White", 'D', 1)));
-	pieces_.push_back(std::make_shared<Queen>(Queen("Black", 'D', 8)));
+	pieces_.push_back(std::make_shared<Queen>(Queen(Piece::Color::WHITE, 'D', 1)));
+	pieces_.push_back(std::make_shared<Queen>(Queen(Piece::Color::BLACK, 'D', 8)));
 	//Rook creation
-	pieces_.push_back(std::make_shared<Rook>(Rook("White", 'H', 1)));
-	pieces_.push_back(std::make_shared<Rook>(Rook("Black", 'H', 8)));
-	pieces_.push_back(std::make_shared<Rook>(Rook("White", 'A', 1)));
-	pieces_.push_back(std::make_shared<Rook>(Rook("Black", 'A', 8)));
+	pieces_.push_back(std::make_shared<Rook>(Rook(Piece::Color::WHITE, 'H', 1)));
+	pieces_.push_back(std::make_shared<Rook>(Rook(Piece::Color::BLACK, 'H', 8)));
+	pieces_.push_back(std::make_shared<Rook>(Rook(Piece::Color::WHITE, 'A', 1)));
+	pieces_.push_back(std::make_shared<Rook>(Rook(Piece::Color::BLACK, 'A', 8)));
 	//Bishop creation
-	pieces_.push_back(std::make_shared<Bishop>(Bishop("White", 'F', 1)));
-	pieces_.push_back(std::make_shared<Bishop>(Bishop("Black", 'F', 8)));
-	pieces_.push_back(std::make_shared<Bishop>(Bishop("White", 'C', 1)));
-	pieces_.push_back(std::make_shared<Bishop>(Bishop("Black", 'C', 8)));
+	pieces_.push_back(std::make_shared<Bishop>(Bishop(Piece::Color::WHITE, 'F', 1)));
+	pieces_.push_back(std::make_shared<Bishop>(Bishop(Piece::Color::BLACK, 'F', 8)));
+	pieces_.push_back(std::make_shared<Bishop>(Bishop(Piece::Color::WHITE, 'C', 1)));
+	pieces_.push_back(std::make_shared<Bishop>(Bishop(Piece::Color::BLACK, 'C', 8)));
 	//Knight creation
-	pieces_.push_back(std::make_shared<Knight>(Knight("White", 'G', 1)));
-	pieces_.push_back(std::make_shared<Knight>(Knight("Black", 'G', 8)));
-	pieces_.push_back(std::make_shared<Knight>(Knight("White", 'B', 1)));
-	pieces_.push_back(std::make_shared<Knight>(Knight("Black", 'B', 8)));
+	pieces_.push_back(std::make_shared<Knight>(Knight(Piece::Color::WHITE, 'G', 1)));
+	pieces_.push_back(std::make_shared<Knight>(Knight(Piece::Color::BLACK, 'G', 8)));
+	pieces_.push_back(std::make_shared<Knight>(Knight(Piece::Color::WHITE, 'B', 1)));
+	pieces_.push_back(std::make_shared<Knight>(Knight(Piece::Color::BLACK, 'B', 8)));
 	//Pawn creation
-	pieces_.push_back(std::make_shared<Pawn>(Pawn("White", 'A', 2)));
-	pieces_.push_back(std::make_shared<Pawn>(Pawn("Black", 'A', 7)));
-	pieces_.push_back(std::make_shared<Pawn>(Pawn("White",'B', 2)));
-	pieces_.push_back(std::make_shared<Pawn>(Pawn("Black", 'B', 7)));
-	pieces_.push_back(std::make_shared<Pawn>(Pawn("White", 'C', 2)));
-	pieces_.push_back(std::make_shared<Pawn>(Pawn("Black", 'C', 7)));
-	pieces_.push_back(std::make_shared<Pawn>(Pawn("White", 'D', 2)));
-	pieces_.push_back(std::make_shared<Pawn>(Pawn("Black", 'D', 7)));
-	pieces_.push_back(std::make_shared<Pawn>(Pawn("White", 'E', 2)));
-	pieces_.push_back(std::make_shared<Pawn>(Pawn("Black", 'E', 7)));
-	pieces_.push_back(std::make_shared<Pawn>(Pawn("White", 'F', 2)));
-	pieces_.push_back(std::make_shared<Pawn>(Pawn("Black", 'F', 7)));
-	pieces_.push_back(std::make_shared<Pawn>(Pawn("White",'G', 2)));
-	pieces_.push_back(std::make_shared<Pawn>(Pawn("Black", 'G', 7)));
-	pieces_.push_back(std::make_shared<Pawn>(Pawn("White", 'H', 2)));
-	pieces_.push_back(std::make_shared<Pawn>(Pawn("Black", 'H', 7)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn(Piece::Color::WHITE, 'A', 2)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn(Piece::Color::BLACK, 'A', 7)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn(Piece::Color::WHITE,'B', 2)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn(Piece::Color::BLACK, 'B', 7)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn(Piece::Color::WHITE, 'C', 2)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn(Piece::Color::BLACK, 'C', 7)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn(Piece::Color::WHITE, 'D', 2)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn(Piece::Color::BLACK, 'D', 7)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn(Piece::Color::WHITE, 'E', 2)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn(Piece::Color::BLACK, 'E', 7)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn(Piece::Color::WHITE, 'F', 2)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn(Piece::Color::BLACK, 'F', 7)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn(Piece::Color::WHITE,'G', 2)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn(Piece::Color::BLACK, 'G', 7)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn(Piece::Color::WHITE, 'H', 2)));
+	pieces_.push_back(std::make_shared<Pawn>(Pawn(Piece::Color::BLACK, 'H', 7)));
 	
 }
 
@@ -97,10 +93,11 @@ void ChessBoard::synchronise() {
 	}
 }
 
-std::shared_ptr<Piece> ChessBoard::findPiece(char x, int y)  const {
+//TODO : a la place dun char avoir une pair de <int, int> 
+std::shared_ptr<Piece> ChessBoard::findPiece(std::pair<int, int> coord)  const {
 	for (auto&& elem : pieces_) 
 	{
-		if (elem->getPosition().first == elem->map.find(x)->second && elem->getPosition().second == y) 
+		if (elem->getPosition().first == coord.first && elem->getPosition().second == coord.second) 
 		{
 			return elem;
 		}
@@ -109,18 +106,15 @@ std::shared_ptr<Piece> ChessBoard::findPiece(char x, int y)  const {
 }
 
 void ChessBoard::deletePiece(std::shared_ptr<Piece> piece) {
-	for (int i = 0; i < pieces_.size(); ++i) 
-	{
-		if (pieces_[i] == piece) 
-		{
-			pieces_.erase(pieces_.begin() + i);
-		}
-	}
+	
+	auto it = std::find(pieces_.begin(), pieces_.end(), piece);
+	pieces_.erase(it);
 }
+
 
 bool ChessBoard::caseIsOccupied(std::pair<int, int> destination)
 {
-	auto piece = findPiece(intToChar(destination.first), destination.second);
+	auto piece = findPiece(std::make_pair(destination.first, destination.second));
 	if (piece != nullptr)
 	{
 		return true;
@@ -203,36 +197,26 @@ namespace isPiece {
 	}
 }
 
-bool ChessBoard::isCheckMate(std::shared_ptr<Piece> piece) {
-	using namespace isPiece;
-	if (isKing(piece.get()))
-	{
-
-		return true;
-
-	}
-	return false;
-}
-
+// TODO a la place de prendre pieceTomoe ca doit prendre une pair int int
 namespace pieceMovements {
-	bool isHorizontalMove(std::shared_ptr<Piece> pieceToMove, std::pair<int, int> destination) {
-		return pieceToMove->getPosition().second == destination.second;
+	bool isHorizontalMove(std::pair<int, int> origin, std::pair<int, int> destination) {
+		return origin.second == destination.second;
 	}
 
-	bool isVerticalMove(std::shared_ptr<Piece> pieceToMove, std::pair<int, int> destination) {
-		return pieceToMove->getPosition().first == destination.first;
+	bool isVerticalMove(std::pair<int, int> origin, std::pair<int, int> destination) {
+		return origin.first == destination.first;
 	}
 
-	bool isDiagonalMove(std::shared_ptr<Piece> pieceToMove, std::pair<int, int> destination) {
-		int verticalDifference = destination.second - pieceToMove->getPosition().second;
-		int horizontalDifference = destination.first - pieceToMove->getPosition().first;
+	bool isDiagonalMove(std::pair<int, int> origin, std::pair<int, int> destination) {
+		int verticalDifference = destination.second - origin.second;
+		int horizontalDifference = destination.first - origin.first;
 
 		return abs(verticalDifference) == abs(horizontalDifference);
 	}
 
-	bool isKnightMove(std::shared_ptr<Piece> pieceToMove, std::pair<int, int> destination) {
-		int verticalDifference = abs(destination.second - pieceToMove->getPosition().second);
-		int horizontalDifference = abs(destination.first - pieceToMove->getPosition().first);
+	bool isKnightMove(std::pair<int, int> origin, std::pair<int, int> destination) {
+		int verticalDifference = abs(destination.second - origin.second);
+		int horizontalDifference = abs(destination.first - origin.first);
 
 		if ((verticalDifference == 2 && horizontalDifference == 1) || (verticalDifference == 1 && horizontalDifference == 2))
 		{
@@ -245,72 +229,73 @@ namespace pieceMovements {
 
 	}
 
-	int moveStep(std::shared_ptr<Piece> pieceToMove, std::pair<int, int> destination) {
-		using namespace pieceMovements;
-		if (isVerticalMove(pieceToMove, destination))
-		{
-			return abs(destination.second - pieceToMove->getPosition().second);
-		}
-		else if (isHorizontalMove(pieceToMove, destination))
-		{
-			return abs(destination.first - pieceToMove->getPosition().first);
-		}
-		else if (isDiagonalMove(pieceToMove, destination))
-		{
-			// We've already verified that this is a diagonal move, so we can just return the difference along one axis
-			return abs(destination.first - pieceToMove->getPosition().first);
-		}
-		else
-		{
-			// Measuring non-linear distance is essentially undefined, so we'll return -1
-			return -1;
-		}
+}
+// TODO a la place de prendre pieceTomoe ca doit prendre une pair int int
+int ChessBoard::moveStep(std::pair<int, int> origin, std::pair<int, int> destination) {
+	using namespace pieceMovements;
+	if (isVerticalMove(origin, destination))
+	{
+		return abs(destination.second - origin.second);
+	}
+	else if (isHorizontalMove(origin, destination))
+	{
+		return abs(destination.first - origin.first);
+	}
+	else if (isDiagonalMove(origin, destination))
+	{
+		// We've already verified that this is a diagonal move, so we can just return the difference along one axis
+		return abs(destination.first - origin.first);
+	}
+	else
+	{
+		// Measuring non-linear distance is essentially undefined, so we'll return -1
+		return -1;
 	}
 }
-
-bool ChessBoard::isValidMove(std::shared_ptr<Piece> pieceToMove, std::pair<int, int> destination) {
+// TODO a la place de prendre pieceTomoe ca doit prendre une pair int int
+bool ChessBoard::isValidMove(std::pair<int, int> origin, std::pair<int, int> destination) {
 	using namespace isPiece;
 	using namespace pieceMovements;
-	bool validKingMove = isDiagonalMove(pieceToMove, destination)
-		|| isHorizontalMove(pieceToMove, destination)
-		|| isVerticalMove(pieceToMove, destination);
+	bool validKingMove = isDiagonalMove(origin, destination)
+		|| isHorizontalMove(origin, destination)
+		|| isVerticalMove(origin, destination);
 	//The Only Time where the previousPosition equals currentPosition is in the beginning
-	bool beginning = (pieceToMove->getPosition() == pieceToMove->getPreviousPosition());
+	bool beginning = (findPiece(origin)->getPosition() == findPiece(origin)->getPreviousPosition());
 	if (!beginning) {
-		if (isKing(pieceToMove.get())) 
+		if (isKing(findPiece(origin).get()))
 		{
-			return validKingMove && (moveStep(pieceToMove, destination) == 1) && !caseIsOccupiedSameColor(pieceToMove, destination);
+			return validKingMove && (moveStep(origin, destination) == 1) && !caseIsOccupiedSameColor(origin, destination);
 		}
-		else if (isQueen(pieceToMove.get())) 
+		else if (isQueen(findPiece(origin).get()))
 		{
 			return true;
 		}
-		else if (isRook(pieceToMove.get())) 
+		else if (isRook(findPiece(origin).get()))
 		{
-			return isHorizontalMove(pieceToMove, destination) || isVerticalMove(pieceToMove, destination) && !caseIsOccupiedSameColor(pieceToMove, destination);
+			return isHorizontalMove(origin, destination) || isVerticalMove(origin, destination) && !caseIsOccupiedSameColor(origin, destination);
 		}
-		else if (isBishop(pieceToMove.get())) 
+		else if (isBishop(findPiece(origin).get()))
 		{
-			return isDiagonalMove(pieceToMove, destination) && !caseIsOccupiedSameColor(pieceToMove, destination);
+			return isDiagonalMove(origin, destination) && !caseIsOccupiedSameColor(origin, destination);
 		}
 	}
-	if (isKnight(pieceToMove.get()))
+	if (isKnight(findPiece(origin).get()))
 	{
-		return isKnightMove(pieceToMove, destination) && !caseIsOccupiedSameColor(pieceToMove, destination);
+		return isKnightMove(origin, destination) && !caseIsOccupiedSameColor(origin, destination);
 	}
-	else if (isPawn(pieceToMove.get()))
+	else if (isPawn(findPiece(origin).get()))
 	{
 		if (beginning) {
-			return isVerticalMove(pieceToMove, destination) && ((moveStep(pieceToMove, destination) == 2 || moveStep(pieceToMove, destination) == 1)) && !caseIsOccupiedSameColor(pieceToMove, destination);
+			return isVerticalMove(origin, destination) && ((moveStep(origin, destination) == 2 || moveStep(origin, destination) == 1)) && !caseIsOccupiedSameColor(origin, destination);
 		}
 		else {
 			if (caseIsOccupied(destination)) 
 			{
-				return isDiagonalMove(pieceToMove, destination) && (moveStep(pieceToMove, destination) == 1) && !caseIsOccupiedSameColor(pieceToMove, destination);
+				return isDiagonalMove(origin, destination) && (moveStep(origin, destination) == 1) && !caseIsOccupiedSameColor(origin, destination);
 			}
 			else 
 			{
-				return isVerticalMove(pieceToMove, destination) && (moveStep(pieceToMove, destination) == 1) && !caseIsOccupiedSameColor(pieceToMove, destination);
+				return isVerticalMove(origin, destination) && (moveStep(origin, destination) == 1) && !caseIsOccupiedSameColor(origin, destination);
 			}
 		}
 	}
@@ -321,9 +306,10 @@ int ChessBoard::charToInt(char coord) const {
 	return map.find(coord)->second;
 }
 
-bool ChessBoard::caseIsOccupiedSameColor(std::shared_ptr<Piece> pieceToMove, std::pair<int, int> destination) {
-	auto piece = findPiece(intToChar(destination.first), destination.second);
-	if (piece!=nullptr && pieceToMove->getColor()==piece->getColor())
+// TODO a la place de prendre pieceTomoe ca doit prendre une pair int int
+bool ChessBoard::caseIsOccupiedSameColor(std::pair<int,int> origin, std::pair<int, int> destination) {
+	auto piece = findPiece(std::make_pair(destination.first, destination.second));
+	if (piece!=nullptr && findPiece(origin)->getColor()==piece->getColor())
 	{
 		return true;
 	}
@@ -346,4 +332,141 @@ char ChessBoard::intToChar(int x) {
 
 void ChessBoard::addPiece(std::shared_ptr<Piece> piece) {
 	this->pieces_.push_back(piece);
+}
+// TODO a la place de prendre pieceTomoe ca doit prendre une pair int int
+bool ChessBoard::isPathClear(std::pair<int, int> origin, std::pair<int, int> toCoords)
+{
+	using namespace pieceMovements;
+	// Gather some information about the move
+	int moveLength = moveStep(origin, toCoords);
+	bool isVertical = isVerticalMove(origin, toCoords);
+	bool isHorizontal = isHorizontalMove(origin, toCoords);
+	bool isDiagonal = isDiagonalMove(origin, toCoords);
+	bool movingSouth = origin.first < toCoords.first; 			// "south" meaning from black side to white side
+	bool movingEast = origin.second < toCoords.second;			// "east" meaning from white left to white right
+
+	// If same or adjacent location, then path is definitely clear
+	if (moveLength == 0 || moveLength == 1)
+	{
+		return true;
+	}
+
+	// Check intermediate locations between fromCoords and toCoords for vacancy
+	std::pair<int, int> fromTemp = origin;
+	std::pair<int, int> toTemp = toCoords;
+	if (isVertical)
+	{
+		// We can halve the number of for-loops if we swap the start and end points depending on the direction of travel
+		if (!movingSouth)
+		{
+			std::swap(fromTemp, toTemp);
+		}
+
+		for (int i = fromTemp.first + 1; i < toTemp.first; i++)
+		{
+			if (caseIsOccupied(std::make_pair(i, fromTemp.second)))
+			{
+				return false;
+			}
+		}
+
+		// Checked all intermediate locations and found them to be empty, so can return true
+		return true;
+	}
+	else if (isHorizontal)
+	{
+		// We can halve the number of for-loops if we swap the start and end points depending on the direction of travel
+		if (!movingEast)
+		{
+			std::swap(fromTemp, toTemp);
+		}
+
+		for (int i = fromTemp.second + 1; i < toTemp.second; i++)
+		{
+			if (caseIsOccupied(std::make_pair(fromTemp.first, i)))
+			{
+				return false;
+			}
+		}
+
+		// Checked all intermediate locations and found them to be empty, so can return true
+		return true;
+	}
+	else if (isDiagonal)
+	{
+		if (movingSouth == movingEast) 			// moving southeast or northwest
+		{
+			// loop assumes southeast travel, swap if that's not the case
+			if (!movingSouth && !movingEast)
+			{
+				std::swap(fromTemp, toTemp);
+			}
+
+			int col = fromTemp.second + 1;
+			for (int row = fromTemp.first + 1; row < toTemp.first; row++)
+			{
+				if (caseIsOccupied(std::make_pair(row, col)))
+				{
+					return false;
+				}
+				col++;
+			}
+
+			// Checked all intermediate locations and found them to be empty, so can return true
+			return true;
+
+		}
+		else if (movingSouth != movingEast)		// moving northeast or southwest
+		{
+			// loop assumes northeast travel, swap if that's not the case
+			if (movingSouth && !movingEast)
+			{
+				std::swap(fromTemp, toTemp);
+			}
+
+			int col = fromTemp.second + 1;
+			for (int row = fromTemp.first - 1; row > toTemp.first; row--)
+			{
+				if (caseIsOccupied(std::make_pair(row, col)))
+				{
+					return false;
+				}
+				col++;
+			}
+
+			// Checked all intermediate locations and found them to be empty, so can return true
+			return true;
+		}
+	}
+
+	// path is neither vertical, horizontal, nor diagonal, so it's not a clear path
+	return false;
+}
+std::pair<int, int> ChessBoard::getKingLocation(Piece::Color color) {
+	using namespace isPiece;
+	for (auto&& elem: pieces_) {
+		if (isKing(elem.get()) && elem->getColor() == color) {
+			return elem->getPosition();
+		}
+	}
+	//The  function will never be used if no king is found return 0,0 to avoid compiler warnings
+	return std::make_pair(0,0);
+}
+
+std::vector<std::pair<int, int>> ChessBoard::getPiecesLocation(Piece::Color color) {
+	std::vector<std::pair<int, int>> locations;
+	for (auto&& elem : pieces_) {
+		if (elem->getColor() == color) {
+       		locations.push_back(elem->getPosition());
+		}
+	}
+	return locations;
+}
+
+std::vector<std::pair<int, int>> ChessBoard::getLocations() {
+	std::vector<std::pair<int, int>> locations;
+	for (auto&& elem : pieces_) {
+		locations.push_back(elem->getPosition());
+	}
+	return locations;
 }
