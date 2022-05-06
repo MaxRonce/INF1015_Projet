@@ -37,6 +37,7 @@ set(PROJECT_SOURCES
         Rook.cpp
         Game.h
         Game.cpp
+        echec.qrc
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

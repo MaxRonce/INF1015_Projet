@@ -27,7 +27,6 @@
         bool isPathClear(std::pair<int, int> origin, std::pair<int, int> toCoords);
         std::vector<std::pair<int, int>> getPiecesLocation(Piece::Color color);
         std::vector<std::pair<int, int>> getLocations();
-        bool pathSameColor(std::pair<int, int> origin, std::pair<int, int> toCoords);
     private:
         std::map<char, int> map{ {'A', 8}, {'B', 7},{'C', 6},{'D', 5},{'E', 4}, {'F', 3}, {'G', 2},{'H', 1} };
         bool caseIsOccupied(std::pair<int, int> destination);

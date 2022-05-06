@@ -258,23 +258,23 @@ bool ChessBoard::isValidMove(std::pair<int, int> origin, std::pair<int, int> des
     bool beginning = (findPiece(origin)->getPosition() == findPiece(origin)->getPreviousPosition());
         if (isKing(findPiece(origin).get()))
         {
-            return validKingMove && (moveStep(origin, destination) == 1) && !caseIsOccupiedSameColor(origin, destination) && pathSameColor(origin, destination);
+            return validKingMove && (moveStep(origin, destination) == 1) && !caseIsOccupiedSameColor(origin, destination) && isPathClear(origin,destination);
         }
         else if (isQueen(findPiece(origin).get()))
         {
-            return  pathSameColor(origin, destination)&& !caseIsOccupiedSameColor(origin, destination);
+            return  !caseIsOccupiedSameColor(origin, destination)&& isPathClear(origin,destination);
         }
         else if (isRook(findPiece(origin).get()))
         {
-           return (isHorizontalMove(origin, destination) || isVerticalMove(origin, destination)) && !caseIsOccupiedSameColor(origin, destination) && pathSameColor(origin, destination);
+           return (isHorizontalMove(origin, destination) || isVerticalMove(origin, destination)) && !caseIsOccupiedSameColor(origin, destination) && isPathClear(origin,destination);
         }
         else if (isBishop(findPiece(origin).get()))
         {
-            return isDiagonalMove(origin, destination) && !caseIsOccupiedSameColor(origin, destination) && pathSameColor(origin, destination);
+            return isDiagonalMove(origin, destination) && !caseIsOccupiedSameColor(origin, destination) && isPathClear(origin,destination);
         }
     if (isKnight(findPiece(origin).get()))
     {
-        return isKnightMove(origin, destination) && !caseIsOccupiedSameColor(origin, destination);
+        return isKnightMove(origin, destination) && !caseIsOccupiedSameColor(origin, destination)&&isPathClear(origin,destination);
     }
     else if (isPawn(findPiece(origin).get()))
     {
@@ -505,112 +505,6 @@ void ChessBoard::move(std::pair<int, int> origin,std::pair<int, int> destination
     }
 }
 
-bool ChessBoard::pathSameColor(std::pair<int, int> origin, std::pair<int, int> toCoords){
-    using namespace pieceMovements;
-       // Gather some information about the move
-       int moveLength = moveStep(origin, toCoords);
-       bool isVertical = isVerticalMove(origin, toCoords);
-       bool isHorizontal = isHorizontalMove(origin, toCoords);
-       bool isDiagonal = isDiagonalMove(origin, toCoords);
-       bool movingSouth = origin.second >  toCoords.second; 			// "south" meaning from black side to white side
-       bool movingEast = origin.first> toCoords.first;			// "east" meaning from white left to white right
-       // If same or adjacent location, then path is definitely clear
-       if (moveLength == 0 || moveLength == 1)
-       {
-           return true;
-       }
-
-       // Check intermediate locations between fromCoords and toCoords for vacancy
-       std::pair<int, int> fromTemp = origin;
-       std::pair<int, int> toTemp = toCoords;
-       if (isVertical)
-       {
-           // We can halve the number of for-loops if we swap the start and end points depending on the direction of travel
-           if (!movingSouth)
-           {
-               std::swap(fromTemp, toTemp);
-           }
-
-           for (int i = fromTemp.second - 1; i > toTemp.second; i--)
-           {
-               if (caseIsOccupiedSameColor(origin,std::make_pair( fromTemp.first,i)))
-               {
-                   return false;
-               }
-           }
-
-           // Checked all intermediate locations and found them to be empty, so can return true
-           return true;
-       }
-       else if (isHorizontal)
-       {
-           // We can halve the number of for-loops if we swap the start and end points depending on the direction of travel
-           if (!movingEast)
-           {
-               std::swap(fromTemp, toTemp);
-           }
-
-           for (int i = fromTemp.first - 1; i > toTemp.first; i--)
-           {
-               if (caseIsOccupiedSameColor(origin,std::make_pair(i, fromTemp.second)))
-               {
-                   return false;
-               }
-           }
-
-           // Checked all intermediate locations and found them to be empty, so can return true
-           return true;
-       }
-       else if (isDiagonal)
-       {
-           if (movingSouth == movingEast) 			// moving southeast or northwest
-           {
-               // loop assumes southeast travel, swap if that's not the case
-               if (!movingSouth && !movingEast)
-               {
-                   std::swap(fromTemp, toTemp);
-               }
-
-               int col = fromTemp.first - 1;
-               for (int row = fromTemp.second - 1; row > toTemp.second; row--)
-               {
-                   if (caseIsOccupiedSameColor(origin,std::make_pair(col, row)))
-                   {
-                       return false;
-                   }
-                   col--;
-               }
-
-               // Checked all intermediate locations and found them to be empty, so can return true
-               return true;
-
-           }
-           else if (movingSouth != movingEast)		// moving northeast or southwest
-           {
-               // loop assumes northeast travel, swap if that's not the case
-               if (movingSouth && !movingEast)
-               {
-                   std::swap(fromTemp, toTemp);
-               }
-
-               int col = fromTemp.first - 1;
-               for (int row = fromTemp.second + 1; row < toTemp.second; row++)
-               {
-                   if (caseIsOccupiedSameColor(origin,std::make_pair(col , row)))
-                   {
-                       return false;
-                   }
-                   col--;
-               }
-
-               // Checked all intermediate locations and found them to be empty, so can return true
-               return true;
-           }
-       }
-
-       // path is neither vertical, horizontal, nor diagonal, so it's not a clear path
-       return false;
-   }
 void ChessBoard::revertMove(std::pair<int, int> previous, std::shared_ptr<Piece> piece){
     piece->setPosition(piece->getPreviousPosition());
     piece->setPreviousPosition(previous);

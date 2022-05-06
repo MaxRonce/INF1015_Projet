@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/echec">
+        <file>Images/BlackBishop.png</file>
+        <file>Images/BlackKing.png</file>
+        <file>Images/BlackKnight.png</file>
+        <file>Images/BlackPawn.png</file>
+        <file>Images/BlackQueen.png</file>
+        <file>Images/BlackRook.png</file>
+        <file>Images/c862a3c9ef219140fb365301f9ebbd50-black-dot.png</file>
+        <file>Images/download.png</file>
+        <file>Images/WhiteBishop.png</file>
+        <file>Images/WhiteKing.png</file>
+        <file>Images/WhiteKnight.png</file>
+        <file>Images/WhitePawn.png</file>
+        <file>Images/WhiteQueen.png</file>
+        <file>Images/WhiteRook.png</file>
+    </qresource>
+</RCC>

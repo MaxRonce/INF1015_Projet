@@ -6,6 +6,7 @@
 #include <QLabel>
 
 
+
 const QString names[64] =
    {
          "h8","g8","f8","e8","d8","c8","b8","a8",
@@ -20,14 +21,14 @@ const QString names[64] =
 
 namespace images{
 
-    std::vector<const char*> imagesWhite{"C:/Users/Admin/OneDrive/Documents/EXEM/Images/WhiteRook.png","C:/Users/Admin/OneDrive/Documents/EXEM/Images/WhiteKnight.png",
-                                      "C:/Users/Admin/OneDrive/Documents/EXEM/Images/WhiteBishop.png","C:/Users/Admin/OneDrive/Documents/EXEM/Images/WhiteQueen.png",
-                                      "C:/Users/Admin/OneDrive/Documents/EXEM/Images/WhiteKing.png","C:/Users/Admin/OneDrive/Documents/EXEM/Images/WhiteBishop.png",
-                                      "C:/Users/Admin/OneDrive/Documents/EXEM/Images/WhiteKnight.png","C:/Users/Admin/OneDrive/Documents/EXEM/Images/WhiteRook.png"};
-    std::vector<const char*> imagesBlack{"C:/Users/Admin/OneDrive/Documents/EXEM/Images/BlackRook.png","C:/Users/Admin/OneDrive/Documents/EXEM/Images/BlackKnight.png",
-                                      "C:/Users/Admin/OneDrive/Documents/EXEM/Images/BlackBishop.png","C:/Users/Admin/OneDrive/Documents/EXEM/Images/BlackQueen.png",
-                                      "C:/Users/Admin/OneDrive/Documents/EXEM/Images/BlackKing.png","C:/Users/Admin/OneDrive/Documents/EXEM/Images/BlackBishop.png",
-                                      "C:/Users/Admin/OneDrive/Documents/EXEM/Images/BlackKnight.png","C:/Users/Admin/OneDrive/Documents/EXEM/Images/BlackRook.png"};
+    std::vector<const char*> imagesWhite{":/echec/Images/WhiteRook.png",":/echec/Images/WhiteKnight.png",
+                                      ":/echec/Images/WhiteBishop.png",":/echec/Images/WhiteQueen.png",
+                                      ":/echec/Images/WhiteKing.png",":/echec/Images/WhiteBishop.png",
+                                      ":/echec/Images/WhiteKnight.png",":/echec/Images/WhiteRook.png"};
+    std::vector<const char*> imagesBlack{":/echec/Images/BlackRook.png",":/echec/Images/BlackKnight.png",
+                                      ":/echec/Images/BlackBishop.png",":/echec/Images/BlackQueen.png",
+                                      ":/echec/Images/BlackKing.png",":/echec/Images/BlackBishop.png",
+                                      ":/echec/Images/BlackKnight.png",":/echec/Images/BlackRook.png"};
 
 }
 
@@ -86,7 +87,7 @@ void MainWindow::setButtonName(){
         for(int j = 0; j<8; ++j){
             auto button = qobject_cast<QPushButton*>(ui->gridLayout->itemAtPosition(i,j)->widget());
             button->setObjectName(names[k]);
-           connect(button, SIGNAL(clicked()), this, SLOT(setIcon()));
+            connect(button, SIGNAL(clicked()), this, SLOT(setIcon()));
             ++k;
         }
      }
@@ -129,12 +130,12 @@ void MainWindow::initialize(){
    }
 
    for (int j = 0; j < 8; ++j) {
-           qobject_cast<QPushButton*>(ui->gridLayout->itemAtPosition(1,j)->widget())->setIcon(QIcon("C:/Users/Admin/OneDrive/Documents/EXEM/Images/BlackPawn.png"));
+           qobject_cast<QPushButton*>(ui->gridLayout->itemAtPosition(1,j)->widget())->setIcon(QIcon(":/echec/Images/BlackPawn.png"));
            qobject_cast<QPushButton*>(ui->gridLayout->itemAtPosition(1,j)->widget())->setIconSize(QSize(80, 80));
     }
 
    for (int j = 0; j < 8; ++j) {
-           qobject_cast<QPushButton*>(ui->gridLayout->itemAtPosition(6,j)->widget())->setIcon(QIcon("C:/Users/Admin/OneDrive/Documents/EXEM/Images/WhitePawn.png"));
+           qobject_cast<QPushButton*>(ui->gridLayout->itemAtPosition(6,j)->widget())->setIcon(QIcon(":/echec/Images/WhitePawn.png"));
            qobject_cast<QPushButton*>(ui->gridLayout->itemAtPosition(6,j)->widget())->setIconSize(QSize(80, 80));
     }
 
