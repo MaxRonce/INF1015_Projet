@@ -39,23 +39,54 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->setupUi(this);
    createButtons();
-   initialize();
-   auto restart = ui->pushButton;
-   restart->setText("Restart Game");
-   restart->setFont(QFont("", 10));
-   //QObject::connect(restartButton, &QPushButton::clicked, this, &ChessWindow::restartGame);
    connect(this, SIGNAL(sendSignal(QString)), &game_, SLOT(getInput(QString)));
    connect(&game_, SIGNAL(sendResponse(QString)), this, SLOT(getResponse(QString)));
-   //QObject::connect(exit, &QPushButton::clicked, this, quitGame);
+  // ui->label->setStyleSheet("QLabel{font-size: 18pt;}");
+   ui->label->setStyleSheet("QLabel { font-size: 18pt; background-color : darkCyan; color : black;border: 3px solid black; }");
+   ui->label->setAlignment(Qt::AlignCenter);
+   ui->label_2->setStyleSheet("QLabel{font-size: 16pt; background-color : white; color : black;border: 3px solid black;}");
+   ui->label_2->setAlignment(Qt::AlignCenter);
+   connect(&game_, SIGNAL(colorChange()), this, SLOT(guiColor()));
 }
 
 
+void MainWindow::guiColor(){
+    if(colorCount%2==0){
+        ui->label_2->setText("White's Turn");
+    }
+    else
+    {
+         ui->label_2->setText("Black's Turn");
+    }
+    ++colorCount;
+}
+void MainWindow::defaultGameWind(){
+    initialize();
+    game_.defaultMode();
 
+}
+void MainWindow::restartGameWind(){
+    ui->label->setText("Welcome to ChessMaster");
+    ui->label_2->setText("");
+    game_.restart();
+    for(int i = 0; i<8;++i){
+        for(int j =0; j<8;++j){
+        qobject_cast<QPushButton*>(ui->gridLayout->itemAtPosition(i,j)->widget())->setIcon(QIcon());
+        }
+   }
 
+}
 void MainWindow::createButtons(){
     int k = 1;
     const QSize btnSize = QSize(100, 100);
-
+    auto defaultGame = ui->pushButton;
+    defaultGame->setText("Default Game");
+    defaultGame->setFont(QFont("", 10));
+    connect(defaultGame, SIGNAL(clicked()), this, SLOT(defaultGameWind()));
+    auto restart = ui->pushButton_2;
+    restart->setText("Restart Game");
+    restart->setFont(QFont("", 10));
+    connect(restart, SIGNAL(clicked()), this, SLOT(restartGameWind()));
        for (int i = 0; i < 8; ++i) {
 
                for (int j = 0; j < 8; ++j) {
@@ -97,27 +128,12 @@ void MainWindow::setIcon(){
     QPushButton* target = qobject_cast<QPushButton*>(sender());
         if (target != nullptr)
         {
-          //auto color = target->palette().QPalette::color(target->backgroundRole());
-            //if(color!= QString( "#80c342")){
-                //target->setStyleSheet("background-color: #80c342");
-                //QObject::connect(target, SIGNAL(clicked()), chessBoard_, SLOT(ChessBoard::chessBoard_->isValidMove(chessBoard_->findPiece('A',1), {2,3})));
-                //connect(target, SIGNAL(clicked()), chessBoard_, SLOT(ChessBoard::chessBoard_->isValidMove(chessBoard_->findPiece('A',1), {2,3})));
-          // }
-           // else{
-                 //target->setStyleSheet("background-color: #14148c");
-           // }
-           //connect(qobject_cast<QPushButton*>(ui->gridLayout->itemAtPosition(target->pos(),target->geometry())->widget()), SIGNAL(clicked()), this, SLOT(setIcon()));
-              //target->setStyleSheet("background-color: yellowgreen");
-           //target->pos();
-           //target->geometry();
-           //print(button.text(), ":", button.pos(), button.geometry());
                 emit sendSignal(target->objectName());
         }
 }
 
 void MainWindow::initialize(){
     using namespace images;
-    //createButtons();
     setButtonName();
     for(int i = 0; i<8;++i){
         qobject_cast<QPushButton*>(ui->gridLayout->itemAtPosition(0,i)->widget())->setIcon(QIcon(imagesBlack[i]));
@@ -147,35 +163,46 @@ void MainWindow::initialize(){
 
 void MainWindow::getResponse(QString response)
 {
+    try{
+    ui->label->setStyleSheet("QLabel { font-size: 18pt; background-color : darkCyan; color : black;border: 3px solid black; }");
+    ui->label->setText("");
     using namespace images;
     std::string responseString = response.toStdString();
 
     if (std::string("Check") == responseString)
     {
         qDebug() << "Check";
-        //check->setPlainText("Check!");
+        ui->label->setText("Check!");
     }
    else
     {
-        //check->setPlainText("");
+         ui->label->setText("");
     }
 
     // If response was "Invalid Move", ignore it
+    if (std::string( "Check, Invalid Move") == responseString)
+    {
+        qDebug() <<  "This leaves you in Check, Invalid Move";
+        ui->label->setStyleSheet("QLabel { font-size: 15pt;background-color : darkCyan; color : black;border: 3px solid black; }");
+        ui->label->setText("this leaves you Check,Invalid Move!");
+       return;
+    }
     if (std::string("Invalid Move") == responseString)
     {
         qDebug() << "Invalid Move";
+        ui->label->setText("Invalid Move!");
        return;
     }
-   else if (std::string("Checkmate!") == responseString)
+   else if (std::string("Checkmate") == responseString)
     {
         qDebug() << "Checkmate!";
-        //check->setPlainText("Checkmate!");
+        ui->label->setText("Checkmate!");
         return;
     }
-    else if (std::string("Stalemate!") == responseString)
+    else if (std::string("Stalemate") == responseString)
     {
         qDebug() << "Stalemate!";
-        //check->setPlainText("Stalemate!");
+        ui->label->setText("Stalemate!");
         return;
     }
     // Otherwise, use the response from Game to move the correct pieces
@@ -247,20 +274,13 @@ void MainWindow::getResponse(QString response)
                 }
             }
         }
-
-        if (turnColor == Piece::Color::WHITE)
-        {
-            turnColor = Piece::Color::BLACK;
-            //turn->setPlainText("Black's Turn");
-        }
-        else
-        {
-            turnColor = Piece::Color::WHITE;
-            //turn->setPlainText("White's Turn");
-        }
     }
-
+    }
+    catch (InstancesKingException& except) {
+                    std::cout << "Execution Error : " << except.what() << std::endl;
+                }
 }
+
 
 
 

@@ -24,12 +24,13 @@ public:
 	Piece::Color getTurn(int moveNumber) const;
 	// Utilities
 	std::string printColor(Piece::Color color);
-
+    void defaultMode();
+    void restart();
 public slots:
-	void getInput(QString input);
-
+    void getInput(QString input);
 signals:
     void sendResponse(QString response);
+    void colorChange();
 private:
 	bool end_ = false;
     ChessBoard* board_ = new ChessBoard();

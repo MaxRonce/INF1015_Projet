@@ -32,7 +32,17 @@
 
 			}
 		}
+ void Game::defaultMode(){
+     move1 = "";
+     move2 = "";
+     guiTurn = Piece::Color::WHITE;
+     board_->defaultChess();
+ }
 
+void Game::restart(){
+    resetMoves();
+    board_->clear();
+}
 
 	bool Game::isInCheck(Piece::Color defendingColor) const
 	{
@@ -223,6 +233,7 @@
 		else {
 			guiTurn = Piece::Color::WHITE;
 		}
+         emit colorChange();
 	}
 
 
@@ -322,7 +333,7 @@
                    // If move puts player in check, print error, revert move, and let player enter different move
                    board_->revertMove(tempPrevPos,board_->findPiece(destination));
                    qDebug() << "Error: This leaves you in check.";
-                   emit sendResponse("Invalid Move");
+                   emit sendResponse("Check, Invalid Move");
                }
                // If the move was valid, switch turns and send "Valid" response
                else
@@ -351,6 +362,7 @@
 
            if (isInCheckMate(guiTurn) == true)
            {
+              end_=true;
               emit sendResponse("Checkmate");
            }
            else if (isInCheck(guiTurn) == true)

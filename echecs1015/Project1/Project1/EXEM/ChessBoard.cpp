@@ -8,6 +8,10 @@
 #include <QDebug>
 ChessBoard::ChessBoard() {
 
+   boardInit();
+
+}
+void ChessBoard::boardInit(){
     for (int i = 0; i < 8; ++i)
     {
         for (int j = 0; j < 8; ++j)
@@ -15,8 +19,10 @@ ChessBoard::ChessBoard() {
             board_[i][j] = '0';
         }
     }
-    createPieces();
 
+}
+void ChessBoard::defaultChess(){
+  createPieces();
 }
 
 void ChessBoard::createPieces() {
@@ -274,7 +280,7 @@ bool ChessBoard::isValidMove(std::pair<int, int> origin, std::pair<int, int> des
         }
     if (isKnight(findPiece(origin).get()))
     {
-        return isKnightMove(origin, destination) && !caseIsOccupiedSameColor(origin, destination)&&isPathClear(origin,destination);
+        return isKnightMove(origin, destination) && !caseIsOccupiedSameColor(origin, destination);
     }
     else if (isPawn(findPiece(origin).get()))
     {
@@ -508,4 +514,9 @@ void ChessBoard::move(std::pair<int, int> origin,std::pair<int, int> destination
 void ChessBoard::revertMove(std::pair<int, int> previous, std::shared_ptr<Piece> piece){
     piece->setPosition(piece->getPreviousPosition());
     piece->setPreviousPosition(previous);
+}
+
+void ChessBoard::clear(){
+    boardInit();
+    pieces_.clear();
 }

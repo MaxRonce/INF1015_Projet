@@ -25,10 +25,13 @@
         int moveStep(std::pair<int, int> origin, std::pair<int, int> destination);
         std::pair<int, int> getKingLocation(Piece::Color color);
         bool isPathClear(std::pair<int, int> origin, std::pair<int, int> toCoords);
+        void defaultChess();
         std::vector<std::pair<int, int>> getPiecesLocation(Piece::Color color);
         std::vector<std::pair<int, int>> getLocations();
+        void clear();
     private:
         std::map<char, int> map{ {'A', 8}, {'B', 7},{'C', 6},{'D', 5},{'E', 4}, {'F', 3}, {'G', 2},{'H', 1} };
+        void boardInit();
         bool caseIsOccupied(std::pair<int, int> destination);
         bool caseIsOccupiedSameColor(std::pair<int, int> origin, std::pair<int, int> toCoords);
         void createPieces();
