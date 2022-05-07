@@ -65,17 +65,19 @@ void MainWindow::defaultGameWind(){
     game_.defaultMode();
 
 }
-void MainWindow::restartGameWind(){
-    ui->label->setText("Welcome to ChessMaster");
-    ui->label_2->setText("");
-    game_.restart();
-    for(int i = 0; i<8;++i){
-        for(int j =0; j<8;++j){
-        qobject_cast<QPushButton*>(ui->gridLayout->itemAtPosition(i,j)->widget())->setIcon(QIcon());
-        }
-   }
+//void MainWindow::restartGameWind(){
+ //  colorCount=1;
+ //   move="";
+ //   ui->label->setText("Welcome to ChessMaster");
+ //   ui->label_2->setText("");
+ //   game_.restart();
+ //   for(int i = 0; i<8;++i){
+  //      for(int j =0; j<8;++j){
+  //      qobject_cast<QPushButton*>(ui->gridLayout->itemAtPosition(i,j)->widget())->setIcon(QIcon());
+ //       }
+  // }
 
-}
+//}
 void MainWindow::createButtons(){
     int k = 1;
     const QSize btnSize = QSize(100, 100);
@@ -83,10 +85,10 @@ void MainWindow::createButtons(){
     defaultGame->setText("Default Game");
     defaultGame->setFont(QFont("", 10));
     connect(defaultGame, SIGNAL(clicked()), this, SLOT(defaultGameWind()));
-    auto restart = ui->pushButton_2;
-    restart->setText("Restart Game");
-    restart->setFont(QFont("", 10));
-    connect(restart, SIGNAL(clicked()), this, SLOT(restartGameWind()));
+    //auto restart = ui->pushButton_2;
+    //restart->setText("Restart Game");
+    //restart->setFont(QFont("", 10));
+    //connect(restart, SIGNAL(clicked()), this, SLOT(restartGameWind()));
        for (int i = 0; i < 8; ++i) {
 
                for (int j = 0; j < 8; ++j) {

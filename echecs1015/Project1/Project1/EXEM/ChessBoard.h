@@ -1,3 +1,10 @@
+/*
+* TP6 INF1015
+* \file   ChessBoard.hpp
+* \author Nada Alami Chentoufi et Maxime Ronceray
+* \date   25 avril 2022
+* Créé le 20 avril 2022
+*/
 #pragma once
 #include "Bishop.h"
 #include "King.h"
@@ -28,7 +35,7 @@
         void defaultChess();
         std::vector<std::pair<int, int>> getPiecesLocation(Piece::Color color);
         std::vector<std::pair<int, int>> getLocations();
-        void clear();
+        //void clear();
     private:
         std::map<char, int> map{ {'A', 8}, {'B', 7},{'C', 6},{'D', 5},{'E', 4}, {'F', 3}, {'G', 2},{'H', 1} };
         void boardInit();

@@ -1,4 +1,10 @@
-
+/*
+* TP6 INF1015
+* \file   ChessBoard.cpp
+* \author Nada Alami Chentoufi et Maxime Ronceray
+* \date   25 avril 2022
+* Créé le 20 avril 2022
+*/
 #pragma once
 #include "ChessBoard.h"
 
@@ -516,7 +522,8 @@ void ChessBoard::revertMove(std::pair<int, int> previous, std::shared_ptr<Piece>
     piece->setPreviousPosition(previous);
 }
 
-void ChessBoard::clear(){
-    boardInit();
-    pieces_.clear();
-}
+//void ChessBoard::clear(){
+ //   boardInit();
+ //   capturedPieces_.clear();
+ //   pieces_.clear();
+//}

@@ -1,5 +1,12 @@
 
 #pragma once
+/*
+* TP6 INF1015
+* \file   Game.hpp
+* \author Nada Alami Chentoufi et Maxime Ronceray
+* \date   25 avril 2022
+* Créé le 20 avril 2022
+*/
 #pragma warning(push, 0) // Sinon Qt fait des avertissements à /W4.
 #include <QObject>
 #pragma pop()
@@ -25,7 +32,7 @@ public:
 	// Utilities
 	std::string printColor(Piece::Color color);
     void defaultMode();
-    void restart();
+    //void restart();
 public slots:
     void getInput(QString input);
 signals:

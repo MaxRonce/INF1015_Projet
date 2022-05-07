@@ -26,7 +26,7 @@ public slots:
     void setIcon();
     void getResponse(QString response);
     void defaultGameWind();
-    void restartGameWind();
+    //void restartGameWind();
     void guiColor();
 signals:
    void sendSignal(QString);

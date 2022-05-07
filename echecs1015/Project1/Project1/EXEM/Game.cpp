@@ -1,3 +1,10 @@
+/*
+* TP6 INF1015
+* \file   Game.cpp
+* \author Nada Alami Chentoufi et Maxime Ronceray
+* \date   25 avril 2022
+* Créé le 20 avril 2022
+*/
 #pragma once
 #include "Game.h"
 #include "Piece.h"
@@ -33,16 +40,17 @@
 			}
 		}
  void Game::defaultMode(){
-     move1 = "";
-     move2 = "";
+     resetMoves();
      guiTurn = Piece::Color::WHITE;
      board_->defaultChess();
  }
 
-void Game::restart(){
-    resetMoves();
-    board_->clear();
-}
+//void Game::restart(){
+//    guiTurn = Piece::Color::WHITE;
+//    end_=false;
+//    resetMoves();
+//    board_->clear();
+//}
 
 	bool Game::isInCheck(Piece::Color defendingColor) const
 	{
